@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANNY ⚡ LA FUERZA Y LA DULZURA</title>
-  <meta name="description" content="Página dedicada a Anny: una líder brillante, auténtica, amable, gentil y con un corazón indestructible.">
+  <title>ANNY ⚡ LÍDER SELIDER, ARTISTA & ESTILO ÚNICO</title>
+  <meta name="description" content="Página dedicada a Anny: ojos que hipnotizan, estilo llamativo, voz dulce, dibujante y líder en Selider con un corazón brillante.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,21 +19,21 @@
   <div class="punk-vignette" aria-hidden="true"></div>
   <div class="punk-noise-overlay" aria-hidden="true"></div>
 
-  <!-- Canvas Interactivo de Partículas -->
+  <!-- Canvas Interactivo de Partículas de Fondo -->
   <canvas id="particle-canvas"></canvas>
 
   <!-- Barra Superior -->
   <header class="punk-nav">
     <div class="punk-brand-badge">
-      <span class="lightning">⚡</span>
-      <span class="badge-text">ANNY / LÍDER & INSPIRACIÓN</span>
+      <span class="lightning">✨</span>
+      <span class="badge-text">ANNY • MAGIA, ARTE & LIDERAZGO</span>
     </div>
     <div class="nav-controls">
       <button id="sound-toggle-btn" class="punk-mini-btn" title="Activar/Desactivar Sonido">
         <span id="sound-icon">🔊</span>
         <span id="sound-label">FX: ON</span>
       </button>
-      <button id="replay-btn" class="punk-mini-btn" title="Repetir Animación">
+      <button id="replay-btn" class="punk-mini-btn" title="Repetir Animación Inicial">
         <span>🔄</span> REPETIR INTRO
       </button>
     </div>
@@ -83,7 +83,6 @@
 
           <!-- Espinas y Púas Exteriores Punk -->
           <g class="heart-spikes" filter="url(#neon-glow)" stroke="url(#spikesGrad)" stroke-width="2.5" fill="none" stroke-linecap="round">
-            <!-- Púas superiores e izquierdas -->
             <path d="M 60,32 L 60,10" />
             <path d="M 45,22 L 35,6" />
             <path d="M 28,26 L 12,14" />
@@ -92,7 +91,6 @@
             <path d="M 24,78 L 8,88" />
             <path d="M 42,95 L 30,110" />
 
-            <!-- Púas derechas -->
             <path d="M 75,22 L 85,6" />
             <path d="M 92,26 L 108,14" />
             <path d="M 102,40 L 118,34" />
@@ -100,7 +98,6 @@
             <path d="M 96,78 L 112,88" />
             <path d="M 78,95 L 90,110" />
 
-            <!-- Punta inferior -->
             <path d="M 60,104 L 60,118" stroke-width="3.5" />
           </g>
 
@@ -110,10 +107,9 @@
           <!-- Trazado Neón Principal del Corazón -->
           <path id="heart-path" class="heart-draw-path" d="M 60,34 C 60,34 42,12 21,26 C 3,39 6,65 60,104 C 114,65 117,39 99,26 C 78,12 60,34 60,34 Z" fill="none" stroke="url(#laserGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon-glow)" />
           
-          <!-- Alambre de Púas / Barbed Wire Cruzado -->
+          <!-- Alambre de Púas Cruzado -->
           <g class="barbed-wire" stroke="#fdcae1" stroke-width="2" fill="none" filter="url(#neon-glow)">
             <path d="M 18,52 Q 60,40 102,52" stroke-dasharray="8,4" />
-            <!-- Nudos de púas -->
             <circle cx="38" cy="47" r="2.5" fill="#ffe5f0" />
             <path d="M 34,43 L 42,51 M 34,51 L 42,43" stroke="#ffe5f0" stroke-width="1.8" />
             <circle cx="82" cy="47" r="2.5" fill="#ffe5f0" />
@@ -123,26 +119,21 @@
           <!-- Rayo Central Punk -->
           <path class="heart-lightning" d="M 62,28 L 54,52 L 66,54 L 56,82" stroke="#ffe5f0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#neon-glow)" />
         </svg>
-
-        <!-- Etiqueta de Estado de Carga -->
-        <div id="intro-status-text" class="intro-status">
-          <span class="glitch-text" data-text="ENCENDIENDO CORAZÓN...">ENCENDIENDO CORAZÓN...</span>
-        </div>
       </div>
 
       <!-- TÍTULO REVELADO: ANNY -->
       <div id="title-reveal-box" class="title-reveal-box hidden">
-        <div class="tape-strip top-tape">★ INSPIRADORA • GENTIL • LÍDER ★</div>
+        <div class="tape-strip top-tape">★ OJOS HIPNÓTICOS • ESTILO LLAMATIVO • LÍDER ★</div>
         <h1 class="anny-title glitch-heading" data-text="ANNY">
           ANNY
         </h1>
         <div class="subtitle-tag">
-          <span class="sub-badge">FUERZA & DULZURA</span>
+          <span class="sub-badge">DULZURA EN SU VOZ</span>
           <span class="dot-sep">•</span>
-          <span class="sub-badge">UN CORAZÓN QUE BRILLA</span>
+          <span class="sub-badge">MAGIA EN SU ARTE</span>
         </div>
         <button id="enter-universe-btn" class="punk-action-btn">
-          <span>DESCUBRIR EL MUNDO DE ANNY</span> ⚡
+          <span>DESCUBRIR EL UNIVERSO DE ANNY</span> ⚡
         </button>
       </div>
 
@@ -150,30 +141,29 @@
   </div>
 
   <!-- ==============================================
-       CONTENIDO PRINCIPAL (EL MUNDO DE ANNY)
+       CONTENIDO PRINCIPAL
        ============================================== -->
   <main id="main-content" class="main-content">
     
-    <!-- FOTO DESTACADA Y TRIBUTO DE LIDERAZGO -->
+    <!-- FOTO DESTACADA Y PERFIL DE ANNY -->
     <section id="photo-spotlight-section" class="photo-spotlight-section">
       <div class="punk-card photo-card-wrap">
-        <div class="tape-strip mini-tape pink-tape">AUTÉNTICA & RADIANTE</div>
+        <div class="tape-strip mini-tape pink-tape">ESTILO ÚNICO & CORAZÓN NOBLE</div>
         <div class="card-pin">📌</div>
         
         <div class="photo-card-inner">
-          <!-- Marco de Foto Estilo Polaroid Punk -->
+          <!-- Marco Polaroid Punk -->
           <div class="polaroid-frame" id="polaroid-frame">
             <div class="polaroid-image-holder">
-              <img id="anny-main-photo" src="anny.jpg" alt="Foto de Anny" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22450%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234c007d%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%237f00b2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fdcae1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22190%22%20r%3D%2275%22%20fill%3D%22%23ffe5f0%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M%20200%2C130%20L%20208%2C160%20L%20240%2C160%20L%20215%2C180%20L%20225%2C210%20L%20200%2C190%20L%20175%2C210%20L%20185%2C180%20L%20160%2C160%20L%20192%2C160%20Z%22%20fill%3D%22%237f00b2%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%22310%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3EANNY%3C%2Ftext%3E%3Ctext%20x%3D%2250%25%22%20y%3D%22340%22%20font-family%3D%22sans-serif%22%20font-size%3D%2214%22%20fill%3D%22%23ffe5f0%22%20text-anchor%3D%22middle%22%3EClic%20abajo%20para%20cargar%20foto%3C%2Ftext%3E%3C%2Fsvg%3E';">
-              <div class="photo-badge-overlay">★ LA REINA ★</div>
+              <img id="anny-main-photo" src="anny.jpg" alt="Foto de Anny" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22450%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234c007d%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%237f00b2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fdcae1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22180%22%20r%3D%2270%22%20fill%3D%22%23ffe5f0%22%20opacity%3D%220.95%22%2F%3E%3Cpath%20d%3D%22M%20170%2C200%20Q%20200%2C150%20230%2C200%22%20stroke%3D%22%237f00b2%22%20stroke-width%3D%225%22%20fill%3D%22none%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%22300%22%20font-family%3D%22sans-serif%22%20font-size%3D%2226%22%20font-weight%3D%22bold%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3EANNY%3C%2Ftext%3E%3Ctext%20x%3D%2250%25%22%20y%3D%22330%22%20font-family%3D%22sans-serif%22%20font-size%3D%2214%22%20fill%3D%22%23ffe5f0%22%20text-anchor%3D%22middle%22%3EOjos%20Hipn%C3%B3ticos%20%E2%80%A2%20Estilo%20%E2%80%A2%20Voz%20Dulce%3C%2Ftext%3E%3C%2Fsvg%3E';">
+              <div class="photo-badge-overlay">✨ MIRADA & ESTILO</div>
             </div>
             
             <div class="polaroid-caption">
               <span class="caption-name">ANNY</span>
-              <span class="caption-sub">"Líder, bondadosa & auténtica"</span>
+              <span class="caption-sub">"Ojos que hipnotizan • Estilo magnético • Voz dulce"</span>
             </div>
 
-            <!-- Botón para subir o cambiar foto fácilmente -->
             <div class="photo-upload-bar">
               <label for="photo-file-input" class="photo-upload-label">
                 📷 <span>Cargar / Cambiar Foto de Anny</span>
@@ -182,58 +172,61 @@
             </div>
           </div>
 
-          <!-- Mensaje Principal y Atributos -->
+          <!-- Mensaje Principal y Esencia de Anny -->
           <div class="photo-story-content">
-            <div class="story-tag">👑 ESENCIA PURA & DETERMINACIÓN</div>
+            <div class="story-tag">👑 PRESENCIA MAGNÉTICA & CORAZÓN RADIANTE</div>
             <h2 class="story-title">
-              UNA LÍDER QUE <span class="highlight-pink">ILUMINA</span> CADA ESPACIO
+              UNA MIRADA QUE <span class="highlight-pink">HIPNOTIZA</span> Y UN ESTILO INOLVIDABLE
             </h2>
             <p class="story-desc">
-              Hay personas que guían con fuerza, y otras que inspiran con calidez. Anny tiene ese don único de unir ambos mundos: una <strong>líder innata</strong> con visión, empuje y determinación, guiada siempre por un <strong>corazón noble, gentil y profundamente amable</strong>.
+              Anny tiene una presencia magnética que se siente al instante: tiene unos <strong>ojos que hipnotizan</strong> y atrapan miradas, un <strong>estilo llamativo, auténtico y deslumbrante</strong>, y una <strong>voz dulce</strong> que transmite calma, confianza y cariño. Todo esto se une a su mente brillante como <strong>dibujante y artista</strong>, y a su liderazgo de impacto en <strong>Selider</strong>.
             </p>
 
-            <!-- Grid de Cualidades -->
+            <!-- Cualidades destacadas -->
             <div class="qualities-grid">
               <div class="quality-item">
-                <span class="q-icon">👑</span>
+                <span class="q-icon">👁️</span>
                 <div>
-                  <strong>Liderazgo Natural</strong>
-                  <p>Inspira, guía y transforma desafíos en metas superadas.</p>
+                  <strong>Ojos que Hipnotizan</strong>
+                  <p>Una mirada profunda, brillante y cautivadora que transmite magia pura.</p>
                 </div>
               </div>
 
               <div class="quality-item">
-                <span class="q-icon">💖</span>
+                <span class="q-icon">💫</span>
                 <div>
-                  <strong>Bondad & Gentileza</strong>
-                  <p>Tiene una calidez que abraza y hace sentir bien a todos.</p>
+                  <strong>Estilo Llamativo & Único</strong>
+                  <p>Una vibra vibrante y segura de sí misma que resalta dondequiera que esté.</p>
                 </div>
               </div>
 
               <div class="quality-item">
-                <span class="q-icon">✨</span>
+                <span class="q-icon">🎙️</span>
                 <div>
-                  <strong>Linda por Dentro y por Fuera</strong>
-                  <p>Su autenticidad y alegría contagian luz inagotable.</p>
+                  <strong>Voz Dulce & Melódica</strong>
+                  <p>Esa calidez y suavidad al hablar que reconforta, inspira y alegra el día.</p>
                 </div>
               </div>
 
               <div class="quality-item">
-                <span class="q-icon">⚡</span>
+                <span class="q-icon">🌟</span>
                 <div>
-                  <strong>Espíritu Imparable</strong>
-                  <p>Firme en sus convicciones, valiente y leal a lo que ama.</p>
+                  <strong>Líder Selider & Dibujante</strong>
+                  <p>Talento creativo en el papel y liderazgo empático que impulsa a los demás.</p>
                 </div>
               </div>
             </div>
 
             <div class="hero-actions">
               <button id="blast-hearts-btn" class="punk-btn primary">
-                💖 LLUVIA DE CORAZONES
+                💖 EXPLOSIÓN DE CORAZONES
               </button>
               <button id="guitar-riff-btn" class="punk-btn secondary">
                 🎸 ACORDE DE PODER
               </button>
+              <a href="#art-studio-section" class="punk-btn tertiary">
+                🎨 DIBUJAR EN EL LIENZO
+              </a>
             </div>
           </div>
         </div>
@@ -241,72 +234,64 @@
       </div>
     </section>
 
-    <!-- PALETA DE COLORES PERSONALIZADA -->
-    <section class="palette-section">
-      <div class="punk-card">
-        <div class="palette-header-wrap">
-          <h3 class="palette-title">🎨 PALETA NEÓN: LA ARMONÍA DE ANNY</h3>
-          <span class="palette-sub">Toca cualquier tono para copiar su código hexadecimal</span>
+    <!-- ESTUDIO DE DIBUJO Y LIENZO INTERACTIVO DE ANNY -->
+    <section id="art-studio-section" class="art-studio-section">
+      <div class="punk-card studio-card">
+        <div class="tape-strip mini-tape pink-tape">ZONA CREATIVA</div>
+        <div class="card-pin">📌</div>
+
+        <div class="studio-header">
+          <div>
+            <h3 class="studio-title">🎨 EL LIENZO PUNK DE ANNY</h3>
+            <p class="studio-sub">Un espacio interactivo de dibujo con pinceles de neón dedicados a su pasión por el arte.</p>
+          </div>
+          <div class="brush-controls">
+            <span class="tool-label">PINCEL:</span>
+            <button class="brush-btn active" data-color="#fdcae1" style="--btn-c: #fdcae1;" title="Rosa Neón"></button>
+            <button class="brush-btn" data-color="#ffe5f0" style="--btn-c: #ffe5f0;" title="Luz Pura"></button>
+            <button class="brush-btn" data-color="#7f00b2" style="--btn-c: #7f00b2;" title="Púrpura"></button>
+            <button class="brush-btn" data-color="#c594aa" style="--btn-c: #c594aa;" title="Rosa Ceniza"></button>
+            <button id="clear-sketch-btn" class="punk-mini-btn" title="Limpiar Lienzo">🧹 LIMPIAR</button>
+            <button id="save-sketch-btn" class="punk-mini-btn highlight" title="Descargar Dibujo">💾 GUARDAR</button>
+          </div>
         </div>
-        <div class="palette-grid">
-          <div class="color-chip" style="--chip-bg: #fdcae1; --chip-text: #4c007d;" data-hex="#FDCAE1">
-            <span class="chip-name">Rosa Neón</span>
-            <span class="chip-desc">Dulzura & Chispa</span>
-            <span class="chip-code">#fdcae1</span>
-          </div>
-          <div class="color-chip" style="--chip-bg: #ffe5f0; --chip-text: #4c007d;" data-hex="#FFE5F0">
-            <span class="chip-name">Luz Pura</span>
-            <span class="chip-desc">Gentileza & Calidez</span>
-            <span class="chip-code">#ffe5f0</span>
-          </div>
-          <div class="color-chip" style="--chip-bg: #c594aa; --chip-text: #140020;" data-hex="#C594AA">
-            <span class="chip-name">Rosa Ceniza</span>
-            <span class="chip-desc">Elegancia & Serenidad</span>
-            <span class="chip-code">#c594aa</span>
-          </div>
-          <div class="color-chip" style="--chip-bg: #7f00b2; --chip-text: #ffe5f0;" data-hex="#7F00B2">
-            <span class="chip-name">Púrpura Eléctrico</span>
-            <span class="chip-desc">Liderazgo & Fuerza</span>
-            <span class="chip-code">#7f00b2</span>
-          </div>
-          <div class="color-chip" style="--chip-bg: #4c007d; --chip-text: #ffe5f0;" data-hex="#4C007D">
-            <span class="chip-name">Violeta Profundo</span>
-            <span class="chip-desc">Carácter & Sabiduría</span>
-            <span class="chip-code">#4c007d</span>
-          </div>
+
+        <div class="sketch-wrapper">
+          <canvas id="sketch-canvas" width="800" height="340"></canvas>
+          <div class="sketch-hint">✨ ¡Haz clic y arrastra para dibujar trazos de neón para Anny!</div>
         </div>
       </div>
     </section>
 
-    <!-- FANZINE DE MENSAJES Y NOTAS DEDICADAS -->
+    <!-- FANZINE DE CARTAS Y MENSAJES PARA ANNY -->
     <section class="fanzine-section">
       <div class="section-title-wrap">
-        <h3 class="section-title">⚡ CARTAS & RECORDATORIOS PARA ANNY</h3>
-        <p class="section-sub">Pequeños homenajes a su forma única de ser</p>
+        <h3 class="section-title">⚡ CARTAS & DEDICATORIAS PARA ANNY</h3>
+        <p class="section-sub">Detalles que celebran su mirada, su voz dulce, su arte y su liderazgo</p>
       </div>
 
       <div class="stickers-grid">
-        <!-- Carta 1 -->
-        <div class="punk-card sticker-card tilt-left" data-sound="crunch">
-          <div class="tape-strip mini-tape">EL DON DE GUIAR</div>
-          <div class="sticker-badge">👑 LÍDER</div>
-          <h4 class="card-title">INSPIRAS CON EL EJEMPLO</h4>
-          <p>Tu capacidad de escuchar, tomar decisiones con seguridad y apoyar a quienes te rodean hace que cualquier meta se sienta posible.</p>
+        <!-- Carta 1: Mirada y Voz -->
+        <div class="punk-card sticker-card tilt-left" data-sound="sparkle">
+          <div class="tape-strip mini-tape">ENCANTO ÚNICO</div>
+          <div class="sticker-badge">✨ HIPNÓTICA</div>
+          <h4 class="card-title">MIRADA & VOZ DULCE</h4>
+          <p>Tus ojos tienen una profundidad que hipnotiza al instante, y cuando hablas, esa voz dulce y cálida hace que todo a tu alrededor se sienta en armonía.</p>
           <div class="card-footer">
-            <span class="punk-hashtag">#LiderazgoHumano</span>
-            <button class="like-heart-btn" title="Dar amor">💖 <span class="like-count">1998</span></button>
+            <span class="punk-hashtag">#MiradaHipnótica</span>
+            <button class="like-heart-btn" title="Dar amor">💖 <span class="like-count">2026</span></button>
           </div>
         </div>
 
-        <!-- Carta 2 -->
-        <div class="punk-card sticker-card tilt-right" data-sound="sparkle">
-          <div class="tape-strip mini-tape pink-tape">GENTIL & HERMOSA</div>
-          <div class="sticker-badge">✨ BRILLANTE</div>
-          <h4 class="card-title">CORAZÓN DE ORO</h4>
-          <p>Tu empatía y amabilidad no tienen comparación. Siempre tienes las palabras justas y una sonrisa que alegra cualquier momento.</p>
+        <!-- Carta 2: Estilo y Selider -->
+        <div class="punk-card sticker-card tilt-right" data-sound="crunch">
+          <div class="tape-strip mini-tape pink-tape">ESTILO & ACCIÓN</div>
+          <div class="sticker-badge">👑 LÍDER</div>
+          <h4 class="card-title">ESTILO LLAMATIVO</h4>
+          <p>Tu estilo auténtico y llamativo refleja tu seguridad. En <strong>Selider</strong> guías con empatía y fuerza, demostrando que la amabilidad es el verdadero poder.</p>
           <div class="card-footer">
-            <span class="punk-hashtag">#LuzPropia</span>
-            <button class="like-heart-btn" title="Dar amor">💖 <span class="like-count">2026</span></button>
+            <span class="punk-hashtag">#SeliderLíder</span>
+            <button class="like-heart-btn" title="Dar amor">💖 <span class="like-count">1998</span></button>
           </div>
         </div>
 
@@ -315,7 +300,7 @@
           <div class="tape-strip mini-tape purple-tape">MELODÍA</div>
           <div class="cassette-body">
             <div class="cassette-label">
-              <span>EL RITMO IMPARABLE DE ANNY</span>
+              <span>LA DULCE VOZ & RITMO DE ANNY</span>
             </div>
             <div class="cassette-wheels">
               <div class="wheel wheel-1"></div>
@@ -329,13 +314,13 @@
           </div>
         </div>
 
-        <!-- Carta 4: Generador de Nuevas Notas -->
+        <!-- Carta 4: Agregar Mensaje Personalizado -->
         <div class="punk-card sticker-card add-note-card">
-          <div class="tape-strip mini-tape">NUEVA DEDICATORIA</div>
-          <h4 class="card-title">ESCRIBE UN MENSAJE</h4>
-          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Deja una frase especial para recordarle lo grandiosa que es:</p>
+          <div class="tape-strip mini-tape">NUEVO DETALLE</div>
+          <h4 class="card-title">DEDICATORIA PARA ANNY</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Escribe una frase especial sobre su estilo, su voz o sus dibujos:</p>
           <div class="note-input-group">
-            <input type="text" id="custom-note-input" placeholder="Ej: ¡Tu liderazgo y bondad nos inspiran!" maxlength="75">
+            <input type="text" id="custom-note-input" placeholder="Ej: ¡Tus ojos hipnotizan y tu voz alegra el día!" maxlength="75">
             <button id="add-note-btn" class="punk-mini-btn highlight">PEGAR NOTA 📌</button>
           </div>
         </div>
@@ -349,15 +334,15 @@
     <section class="punk-banner-section">
       <div class="punk-marquee-wrap">
         <div class="punk-marquee">
-          <span>⚡ ANNY ⚡ LÍDER INSPIRADORA ⚡ CORAZÓN GENTIL & BRILLANTE ⚡ AUTÉNTICA ⚡ AMABLE ⚡ FUERZA INDOMABLE ⚡ PURA LUZ ⚡</span>
-          <span>⚡ ANNY ⚡ LÍDER INSPIRADORA ⚡ CORAZÓN GENTIL & BRILLANTE ⚡ AUTÉNTICA ⚡ AMABLE ⚡ FUERZA INDOMABLE ⚡ PURA LUZ ⚡</span>
+          <span>⚡ ANNY ⚡ OJOS QUE HIPNOTIZAN ⚡ ESTILO LLAMATIVO & MAGNÉTICO ⚡ VOZ DULCE ⚡ LÍDER EN SELIDER ⚡ DIBUJANTE TALENTOSA ⚡ PURA LUZ ⚡</span>
+          <span>⚡ ANNY ⚡ OJOS QUE HIPNOTIZAN ⚡ ESTILO LLAMATIVO & MAGNÉTICO ⚡ VOZ DULCE ⚡ LÍDER EN SELIDER ⚡ DIBUJANTE TALENTOSA ⚡ PURA LUZ ⚡</span>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Cursor Personalizado -->
-  <div id="punk-cursor" class="punk-cursor">⚡</div>
+  <div id="punk-cursor" class="punk-cursor">✨</div>
   <div id="punk-cursor-dot" class="punk-cursor-dot"></div>
 
   <!-- Lógica y Audio -->

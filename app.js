@@ -1,5 +1,5 @@
 /* =========================================================
-   ANNY - MOTOR INTERACTIVO PINK PUNK & TRIBUTO A LA LÍDER
+   ANNY - MOTOR INTERACTIVO PINK PUNK & TRIBUTO A LA LÍDER Y ARTISTA
    Paleta: #c594aa, #fdcae1, #ffe5f0, #4c007d, #7f00b2
    ========================================================= */
 
@@ -147,7 +147,7 @@
 
   const audio = new PunkAudioFX();
 
-  // --- MOTOR DE PARTÍCULAS CANVAS (CORAZONES & CHISPAS) ---
+  // --- MOTOR DE PARTÍCULAS CANVAS DE FONDO ---
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
   let particles = [];
@@ -274,11 +274,10 @@
   }
   requestAnimationFrame(animateCanvas);
 
-  // --- ORQUESTACIÓN DE LA INTRODUCCIÓN ---
+  // --- ORQUESTACIÓN DE LA INTRODUCCIÓN (CORAZÓN -> REVELACIÓN ANNY) ---
   const introOverlay = document.getElementById('intro-overlay');
   const heartWrapper = document.getElementById('heart-wrapper');
   const heartPath = document.getElementById('heart-path');
-  const introStatusText = document.getElementById('intro-status-text');
   const shockwave1 = document.querySelector('.shockwave-1');
   const shockwave2 = document.querySelector('.shockwave-2');
   const titleRevealBox = document.getElementById('title-reveal-box');
@@ -301,10 +300,6 @@
       heartPath.style.animation = 'draw-heart-stroke 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards';
     }
 
-    if (introStatusText) {
-      introStatusText.innerHTML = '<span class="glitch-text" data-text="GENERANDO CORAZÓN PUNK...">GENERANDO CORAZÓN PUNK...</span>';
-    }
-
     setTimeout(() => {
       audio.playHeartbeat();
       if (shockwave1) shockwave1.classList.add('active');
@@ -316,9 +311,6 @@
     }, 1600);
 
     setTimeout(() => {
-      if (introStatusText) {
-        introStatusText.innerHTML = '<span class="glitch-text" data-text="★ LA LÍDER: ANNY ⚡ ★">★ LA LÍDER: ANNY ⚡ ★</span>';
-      }
       audio.playSparkle();
     }, 2200);
 
@@ -337,21 +329,20 @@
         titleRevealBox.classList.add('show');
         spawnBurst(cx, cy, 40);
       }, 400);
-    }, 3000);
+    }, 2800);
   }
 
   window.addEventListener('DOMContentLoaded', () => {
     runIntroSequence();
+    initSketchStudio();
   });
 
-  // Botón "DESCUBRIR EL MUNDO DE ANNY" -> Desplaza suavemente a la foto y tributo
   if (enterUniverseBtn) {
     enterUniverseBtn.addEventListener('click', () => {
       audio.playPowerChord();
       introOverlay.classList.add('hidden-intro');
       spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 60);
 
-      // Enfocar hacia la foto y tarjeta principal
       setTimeout(() => {
         const photoSection = document.getElementById('photo-spotlight-section');
         if (photoSection) {
@@ -389,14 +380,118 @@
     });
   }
 
-  // --- INTERACCIÓN GLOBAL AL HACER CLICK ---
+  // --- ESTUDIO DE DIBUJO NEÓN INTERACTIVO ---
+  function initSketchStudio() {
+    const sketchCanvas = document.getElementById('sketch-canvas');
+    if (!sketchCanvas) return;
+    const sCtx = sketchCanvas.getContext('2d');
+    let isDrawing = false;
+    let currentColor = '#fdcae1';
+    let lastX = 0;
+    let lastY = 0;
+
+    function resizeSketchCanvas() {
+      const rect = sketchCanvas.parentElement.getBoundingClientRect();
+      sketchCanvas.width = rect.width;
+      sketchCanvas.height = 340;
+    }
+    resizeSketchCanvas();
+    window.addEventListener('resize', resizeSketchCanvas);
+
+    function getCoords(e) {
+      const rect = sketchCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      const pos = getCoords(e);
+      lastX = pos.x;
+      lastY = pos.y;
+      audio.playPop();
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      e.preventDefault();
+      const pos = getCoords(e);
+
+      sCtx.strokeStyle = currentColor;
+      sCtx.shadowColor = currentColor;
+      sCtx.shadowBlur = 12;
+      sCtx.lineWidth = 4;
+      sCtx.lineCap = 'round';
+      sCtx.lineJoin = 'round';
+
+      sCtx.beginPath();
+      sCtx.moveTo(lastX, lastY);
+      sCtx.lineTo(pos.x, pos.y);
+      sCtx.stroke();
+
+      lastX = pos.x;
+      lastY = pos.y;
+
+      if (Math.random() < 0.2) {
+        particles.push(new Particle(e.clientX || (e.touches && e.touches[0].clientX), e.clientY || (e.touches && e.touches[0].clientY), 'spark'));
+      }
+    }
+
+    function stopDraw() {
+      isDrawing = false;
+    }
+
+    sketchCanvas.addEventListener('mousedown', startDraw);
+    sketchCanvas.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', stopDraw);
+
+    sketchCanvas.addEventListener('touchstart', startDraw, { passive: false });
+    sketchCanvas.addEventListener('touchmove', draw, { passive: false });
+    window.addEventListener('touchend', stopDraw);
+
+    const brushBtns = document.querySelectorAll('.brush-btn');
+    brushBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        brushBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentColor = btn.getAttribute('data-color');
+        audio.playPop();
+      });
+    });
+
+    const clearBtn = document.getElementById('clear-sketch-btn');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        sCtx.clearRect(0, 0, sketchCanvas.width, sketchCanvas.height);
+        audio.playSparkle();
+      });
+    }
+
+    const saveBtn = document.getElementById('save-sketch-btn');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = 'arte-para-anny.png';
+        link.href = sketchCanvas.toDataURL();
+        link.click();
+        audio.playPowerChord();
+        spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
+      });
+    }
+  }
+
+  // --- INTERACCIÓN GLOBAL CON CLICK (PARTÍCULAS & GRAFFITI) ---
   window.addEventListener('pointerdown', (e) => {
-    if (['BUTTON', 'INPUT', 'LABEL', 'A'].includes(e.target.tagName)) return;
+    if (['BUTTON', 'INPUT', 'LABEL', 'A', 'CANVAS'].includes(e.target.tagName)) return;
     spawnBurst(e.clientX, e.clientY, 20);
     audio.playPop();
   });
 
-  // --- BOTONES DE ACCIÓN ---
+  // --- BOTONES DE ACCIÓN PRINCIPALES ---
   const blastHeartsBtn = document.getElementById('blast-hearts-btn');
   if (blastHeartsBtn) {
     blastHeartsBtn.addEventListener('click', (e) => {
@@ -415,23 +510,6 @@
       spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
     });
   }
-
-  // Copiar código hex
-  const colorChips = document.querySelectorAll('.color-chip');
-  colorChips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const hex = chip.getAttribute('data-hex');
-      if (hex && navigator.clipboard) {
-        navigator.clipboard.writeText(hex);
-        const originalName = chip.querySelector('.chip-name').textContent;
-        chip.querySelector('.chip-name').textContent = '¡COPIADO!';
-        audio.playSparkle();
-        setTimeout(() => {
-          chip.querySelector('.chip-name').textContent = originalName;
-        }, 1200);
-      }
-    });
-  });
 
   // Like buttons
   const likeBtns = document.querySelectorAll('.like-heart-btn');

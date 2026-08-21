@@ -10,10 +10,10 @@
   --color-deep-violet: #4c007d;
   --color-electric-purple: #7f00b2;
 
-  /* Fondos oscuros de alto contraste punk */
+  /* Fondos oscuros */
   --bg-dark-core: #09000f;
   --bg-dark-surface: #140020;
-  --bg-card: rgba(20, 0, 32, 0.9);
+  --bg-card: rgba(20, 0, 32, 0.92);
   --border-neon: #fdcae1;
 
   /* Tipografías */
@@ -88,7 +88,7 @@ html, body {
   background-image: repeating-radial-gradient(#fdcae1 0 0.0001%, #000 0 0.0002%);
 }
 
-/* Canvas de Partículas en el Fondo */
+/* Canvas de Fondo */
 #particle-canvas {
   position: fixed;
   inset: 0;
@@ -164,6 +164,7 @@ html, body {
   gap: 0.4rem;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 2px 2px 0px var(--color-electric-purple);
+  text-decoration: none;
 }
 
 .punk-mini-btn:hover {
@@ -179,7 +180,7 @@ html, body {
 }
 
 /* =========================================================
-   INTRO SPLASH OVERLAY: CORAZÓN ULTRA PUNK -> TÍTULO ANNY
+   INTRO OVERLAY: CORAZÓN ULTRA PUNK -> TÍTULO ANNY
    ========================================================= */
 
 .intro-container {
@@ -213,7 +214,7 @@ html, body {
   text-align: center;
 }
 
-/* Contenedor del Corazón Ultra Punk */
+/* Corazón Ultra Punk */
 .heart-wrapper {
   position: relative;
   width: 250px;
@@ -254,14 +255,8 @@ html, body {
 }
 
 @keyframes shockwave-expand {
-  0% {
-    transform: translate(-50%, -50%) scale(0.6);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(2.6);
-    opacity: 0;
-  }
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
 }
 
 .punk-heart-svg.ultra-punk {
@@ -347,7 +342,6 @@ html, body {
   display: none;
 }
 
-/* Cinta adhesiva */
 .tape-strip {
   background: var(--color-neon-pink);
   color: var(--color-deep-violet);
@@ -372,7 +366,6 @@ html, body {
   color: var(--color-pure-glow);
 }
 
-/* Título Gigante ANNY */
 .anny-title {
   font-family: var(--font-glitch);
   font-size: clamp(4.5rem, 15vw, 9rem);
@@ -484,7 +477,7 @@ html, body {
 }
 
 /* =========================================================
-   CONTENIDO PRINCIPAL (MAIN CONTENT)
+   CONTENIDO PRINCIPAL
    ========================================================= */
 
 .main-content {
@@ -524,7 +517,7 @@ html, body {
 }
 
 /* =========================================================
-   SECCIÓN DE FOTO SPOTLIGHT Y TRIBUTO A ANNY
+   SECCIÓN FOTO SPOTLIGHT & SELIDER/ARTE
    ========================================================= */
 
 .photo-spotlight-section {
@@ -542,7 +535,7 @@ html, body {
   align-items: center;
 }
 
-/* MARCO POLAROID PUNK */
+/* POLAROID PUNK */
 .polaroid-frame {
   background: #fdf5f8;
   padding: 1.2rem 1.2rem 1.8rem 1.2rem;
@@ -608,7 +601,7 @@ html, body {
 .caption-sub {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #7f00b2;
 }
 
@@ -641,7 +634,7 @@ html, body {
   display: none;
 }
 
-/* HISTORIA / TEXTO DEDICADO */
+/* HISTORIA & SELIDER / ARTE */
 .photo-story-content {
   display: flex;
   flex-direction: column;
@@ -730,6 +723,10 @@ html, body {
   border-radius: 4px;
   cursor: pointer;
   letter-spacing: 1px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9);
 }
@@ -755,6 +752,114 @@ html, body {
   transform: translateY(-3px) scale(1.03);
   border-color: var(--color-neon-pink);
   box-shadow: 5px 5px 0px var(--color-electric-purple), 0 0 25px var(--color-electric-purple);
+}
+
+.punk-btn.tertiary {
+  background: linear-gradient(135deg, var(--color-dusty-rose), var(--color-electric-purple));
+  color: var(--color-pure-glow);
+  border: 2px solid var(--color-neon-pink);
+}
+
+.punk-btn.tertiary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 5px 5px 0px var(--color-neon-pink);
+}
+
+/* =========================================================
+   ESTUDIO DE DIBUJO Y LIENZO INTERACTIVO
+   ========================================================= */
+
+.art-studio-section {
+  width: 100%;
+}
+
+.studio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.studio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.studio-title {
+  font-family: var(--font-rocker);
+  font-size: 2rem;
+  color: var(--color-pure-glow);
+  text-shadow: 0 0 15px var(--color-neon-pink);
+}
+
+.studio-sub {
+  color: var(--color-dusty-rose);
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.brush-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tool-label {
+  font-family: var(--font-punk-marker);
+  font-size: 0.85rem;
+  color: var(--color-neon-pink);
+}
+
+.brush-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--btn-c);
+  border: 2px solid #000;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  transition: transform 0.2s ease;
+}
+
+.brush-btn.active {
+  transform: scale(1.25);
+  border-color: #fff;
+  box-shadow: 0 0 10px var(--btn-c);
+}
+
+.sketch-wrapper {
+  position: relative;
+  background: #08000d;
+  border: 2px dashed var(--color-electric-purple);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#sketch-canvas {
+  width: 100%;
+  height: 340px;
+  display: block;
+  cursor: crosshair;
+  background: radial-gradient(circle at center, rgba(127, 0, 178, 0.1) 0%, rgba(8, 0, 13, 0.9) 100%);
+}
+
+.sketch-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 0, 32, 0.75);
+  color: var(--color-neon-pink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(253, 202, 225, 0.3);
+  pointer-events: none;
 }
 
 /* =========================================================
@@ -833,7 +938,7 @@ html, body {
 }
 
 /* =========================================================
-   SECCIÓN FANZINE & CARTAS PARA ANNY
+   FANZINE DE CARTAS
    ========================================================= */
 
 .fanzine-section {
@@ -952,7 +1057,7 @@ html, body {
   box-shadow: 0 0 10px var(--color-neon-pink);
 }
 
-/* CASSETTE TAPE */
+/* CASSETTE */
 .cassette-body {
   background: #1e0030;
   border: 2px solid var(--color-dusty-rose);
@@ -1032,7 +1137,7 @@ html, body {
   color: var(--color-dusty-rose);
 }
 
-/* AGREGAR NOTA */
+/* NOTAS */
 .add-note-card {
   border-style: dashed;
   border-color: var(--color-neon-pink);
@@ -1132,7 +1237,7 @@ html, body {
   position: fixed;
   pointer-events: none;
   z-index: 10000;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   transform: translate(-50%, -50%);
   filter: drop-shadow(0 0 8px var(--color-neon-pink));
   transition: transform 0.08s ease-out;
