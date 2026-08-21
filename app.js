@@ -1,5 +1,5 @@
 /* =========================================================
-   ANNY - MOTOR INTERACTIVO PINK PUNK & CARTAS QUE REVELAN SU ESENCIA
+   ANNY - MOTOR INTERACTIVO PINK PUNK & CARTAS DEL TAROT
    Paleta: #c594aa, #fdcae1, #ffe5f0, #4c007d, #7f00b2
    ========================================================= */
 
@@ -165,10 +165,10 @@
     constructor(x, y, type = 'dot', vx = null, vy = null) {
       this.x = x;
       this.y = y;
-      this.type = type; // 'heart', 'star', 'spark', 'dot'
+      this.type = type;
       this.vx = vx !== null ? vx : (Math.random() - 0.5) * 3.5;
       this.vy = vy !== null ? vy : (Math.random() - 0.5) * 3.5;
-      this.size = type === 'heart' ? Math.random() * 18 + 12 : Math.random() * 6 + 2;
+      this.size = type === 'heart' ? Math.random() * 16 + 10 : Math.random() * 5 + 2;
       this.color = punkColors[Math.floor(Math.random() * punkColors.length)];
       this.alpha = 1;
       this.decay = Math.random() * 0.015 + 0.008;
@@ -360,7 +360,7 @@
     });
   }
 
-  // --- CARGA DE FOTO DE ANNY EN TIEMPO REAL ---
+  // --- CARGA DE FOTO EN TIEMPO REAL ---
   const photoFileInput = document.getElementById('photo-file-input');
   const annyMainPhoto = document.getElementById('anny-main-photo');
 
@@ -380,7 +380,7 @@
     });
   }
 
-  // --- CARTAS INTERACTIVAS 3D QUE REVELAN CUALIDADES ---
+  // --- CARTAS DEL TAROT DE ANNY ---
   function initFlipCards() {
     const flipCards = document.querySelectorAll('.flip-card');
     const revealedCountEl = document.getElementById('revealed-count');
@@ -403,12 +403,10 @@
           audio.playPop();
         }
 
-        // Actualizar contador
         if (revealedCountEl) {
           revealedCountEl.textContent = discoveredSet.size;
         }
 
-        // Si se descubren todas las 6 cartas
         if (discoveredSet.size === 6 && deckUnlockedMessage) {
           setTimeout(() => {
             deckUnlockedMessage.classList.remove('hidden');
@@ -420,7 +418,7 @@
     });
   }
 
-  // --- INTERACCIÓN GLOBAL CON CLICK (PARTÍCULAS & GRAFFITI) ---
+  // --- INTERACCIÓN GLOBAL CON CLICK ---
   window.addEventListener('pointerdown', (e) => {
     if (['BUTTON', 'INPUT', 'LABEL', 'A', '.flip-card'].some(sel => e.target.closest(sel))) return;
     spawnBurst(e.clientX, e.clientY, 20);
@@ -452,16 +450,13 @@
   likeBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const countEl = btn.querySelector('.like-count');
-      let current = parseInt(countEl.textContent, 10) || 0;
-      countEl.textContent = current + 1;
       audio.playSparkle();
       const rect = btn.getBoundingClientRect();
       spawnBurst(rect.left + rect.width / 2, rect.top, 18);
     });
   });
 
-  // --- CASSETTE MUSICAL ---
+  // --- CASSETTE ---
   const cassetteBtn = document.getElementById('cassette-play-btn');
   const cassetteStatus = document.getElementById('cassette-status');
   const wheels = document.querySelectorAll('.wheel');
@@ -473,8 +468,8 @@
       e.stopPropagation();
       isPlayingCassette = !isPlayingCassette;
       if (isPlayingCassette) {
-        cassetteBtn.textContent = '⏸ PAUSAR RITMO';
-        cassetteStatus.textContent = 'SONANDO ⚡';
+        cassetteBtn.textContent = 'PAUSAR';
+        cassetteStatus.textContent = 'REPRODUCIENDO';
         cassetteStatus.style.color = '#fdcae1';
         wheels.forEach((w) => w.classList.add('spinning'));
 
@@ -483,7 +478,7 @@
           audio.playHeartbeat();
         }, 800);
       } else {
-        cassetteBtn.textContent = '▶ PONER RITMO';
+        cassetteBtn.textContent = 'REPRODUCIR';
         cassetteStatus.textContent = 'EN PAUSA';
         cassetteStatus.style.color = '#c594aa';
         wheels.forEach((w) => w.classList.remove('spinning'));
@@ -492,7 +487,7 @@
     });
   }
 
-  // --- CREADOR DE NOTAS PERSONALIZADAS ---
+  // --- CREADOR DE NOTAS ---
   const customNoteInput = document.getElementById('custom-note-input');
   const addNoteBtn = document.getElementById('add-note-btn');
   const dynamicStickersContainer = document.getElementById('dynamic-stickers-container');
@@ -507,13 +502,13 @@
     const card = document.createElement('div');
     card.className = `punk-card sticker-card ${randomTilt}`;
     card.innerHTML = `
-      <div class="tape-strip mini-tape pink-tape">MENSAJE ESPECIAL ⚡</div>
+      <div class="tape-strip mini-tape pink-tape">MENSAJE ESPECIAL</div>
       <div class="sticker-badge">PARA ANNY</div>
-      <h4 class="card-title">★ RECUERDO</h4>
+      <h4 class="card-title">RECUERDO</h4>
       <p style="font-size: 1.1rem; color: #ffe5f0;">"${text}"</p>
       <div class="card-footer">
-        <span class="punk-hashtag">#AnnyBrillante</span>
-        <button class="punk-mini-btn" onclick="this.closest('.sticker-card').remove()">🗑️ QUITAR</button>
+        <span class="punk-hashtag">#Anny</span>
+        <button class="punk-mini-btn" onclick="this.closest('.sticker-card').remove()">QUITAR</button>
       </div>
     `;
 
@@ -536,18 +531,15 @@
 
   // --- CONTROL DE AUDIO ON/OFF ---
   const soundToggleBtn = document.getElementById('sound-toggle-btn');
-  const soundIcon = document.getElementById('sound-icon');
   const soundLabel = document.getElementById('sound-label');
 
   if (soundToggleBtn) {
     soundToggleBtn.addEventListener('click', () => {
       audio.enabled = !audio.enabled;
       if (audio.enabled) {
-        soundIcon.textContent = '🔊';
         soundLabel.textContent = 'FX: ON';
         audio.playPop();
       } else {
-        soundIcon.textContent = '🔇';
         soundLabel.textContent = 'FX: OFF';
       }
     });
