@@ -477,7 +477,6 @@
   const customAudio = document.getElementById('anny-custom-audio');
   const wheels = document.querySelectorAll('.wheel');
   let isPlayingCassette = false;
-  let cassetteInterval = null;
 
   if (cassetteBtn) {
     cassetteBtn.addEventListener('click', (e) => {
@@ -490,33 +489,32 @@
         cassetteStatus.style.color = '#fdcae1';
         wheels.forEach((w) => w.classList.add('spinning'));
 
-        // Si hay archivo de audio personalizado, reproducirlo
-        if (customAudio && customAudio.src) {
-          customAudio.play().catch(() => {
-            // Si el archivo no existe aún, usar sintetizador
-            audio.playPowerChord();
-            cassetteInterval = setInterval(() => {
-              audio.playHeartbeat();
-            }, 800);
-          });
-        } else {
-          audio.playPowerChord();
-          cassetteInterval = setInterval(() => {
-            audio.playHeartbeat();
-          }, 800);
+        // Pausar música de fondo
+        if (bgMusic) bgMusic.pause();
+
+        // Reproducir canción del cassette
+        if (customAudio) {
+          customAudio.currentTime = 0;
+          customAudio.volume = 0.7;
+          customAudio.play().catch(() => {});
         }
       } else {
         cassetteBtn.textContent = 'REPRODUCIR';
         cassetteStatus.textContent = 'EN PAUSA';
         cassetteStatus.style.color = '#c594aa';
         wheels.forEach((w) => w.classList.remove('spinning'));
-        if (customAudio) {
-          customAudio.pause();
+
+        // Pausar cassette
+        if (customAudio) customAudio.pause();
+
+        // Reanudar música de fondo
+        if (bgMusic && bgMusicStarted && audio.enabled) {
+          bgMusic.play().catch(() => {});
         }
-        clearInterval(cassetteInterval);
       }
     });
 
+    // Cuando la canción del cassette termina, reanudar música de fondo
     if (customAudio) {
       customAudio.addEventListener('ended', () => {
         isPlayingCassette = false;
@@ -524,6 +522,11 @@
         cassetteStatus.textContent = 'EN PAUSA';
         cassetteStatus.style.color = '#c594aa';
         wheels.forEach((w) => w.classList.remove('spinning'));
+
+        // Reanudar música de fondo
+        if (bgMusic && bgMusicStarted && audio.enabled) {
+          bgMusic.play().catch(() => {});
+        }
       });
     }
   }
