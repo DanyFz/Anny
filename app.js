@@ -337,11 +337,26 @@
     initFlipCards();
   });
 
+  // --- MÚSICA DE FONDO (Sally Face) ---
+  const bgMusic = document.getElementById('bg-music');
+  let bgMusicStarted = false;
+
+  function startBgMusic() {
+    if (bgMusic && !bgMusicStarted) {
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(() => {});
+      bgMusicStarted = true;
+    }
+  }
+
   if (enterUniverseBtn) {
     enterUniverseBtn.addEventListener('click', () => {
       audio.playPowerChord();
       introOverlay.classList.add('hidden-intro');
       spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 60);
+
+      // Arrancar música de fondo al entrar
+      startBgMusic();
 
       setTimeout(() => {
         const photoSection = document.getElementById('photo-spotlight-section');
@@ -565,8 +580,10 @@
       if (audio.enabled) {
         soundLabel.textContent = 'FX: ON';
         audio.playPop();
+        if (bgMusic && bgMusicStarted) bgMusic.play().catch(() => {});
       } else {
         soundLabel.textContent = 'FX: OFF';
+        if (bgMusic) bgMusic.pause();
       }
     });
   }
