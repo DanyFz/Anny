@@ -13,7 +13,7 @@
   /* Fondos oscuros de alto contraste punk */
   --bg-dark-core: #09000f;
   --bg-dark-surface: #140020;
-  --bg-card: rgba(20, 0, 32, 0.88);
+  --bg-card: rgba(20, 0, 32, 0.9);
   --border-neon: #fdcae1;
 
   /* Tipografías */
@@ -27,7 +27,6 @@
   --glow-pink: 0 0 10px #fdcae1, 0 0 25px #fdcae1, 0 0 50px #7f00b2;
   --glow-purple: 0 0 10px #7f00b2, 0 0 30px #4c007d, 0 0 60px #7f00b2;
   --glow-text-pink: 0 0 8px #ffe5f0, 0 0 20px #fdcae1, 0 0 40px #7f00b2;
-  --glow-heart: 0 0 15px rgba(253, 202, 225, 0.8), 0 0 35px rgba(127, 0, 178, 0.7), 0 0 70px rgba(76, 0, 125, 0.6);
 }
 
 /* =========================================================
@@ -50,15 +49,15 @@ html, body {
   overflow-x: hidden;
   position: relative;
   background-image: 
-    radial-gradient(circle at 20% 20%, rgba(127, 0, 178, 0.25) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(76, 0, 125, 0.35) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(253, 202, 225, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 20% 20%, rgba(127, 0, 178, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(76, 0, 125, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(253, 202, 225, 0.09) 0%, transparent 60%),
     linear-gradient(to right, rgba(253, 202, 225, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(127, 0, 178, 0.03) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
 }
 
-/* Scanlines y Textura Punk */
+/* Scanlines y Texturas */
 .punk-scanlines {
   position: fixed;
   inset: 0;
@@ -69,7 +68,7 @@ html, body {
     rgba(0, 0, 0, 0.35) 50%
   );
   background-size: 100% 4px;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .punk-vignette {
@@ -100,7 +99,7 @@ html, body {
 }
 
 /* =========================================================
-   BARRA DE NAVEGACIÓN Y CONTROLES SUPERIORES
+   BARRA DE NAVEGACIÓN
    ========================================================= */
 
 .punk-nav {
@@ -114,10 +113,10 @@ html, body {
   align-items: center;
   padding: 0 1.5rem;
   z-index: 100;
-  background: rgba(13, 0, 20, 0.85);
+  background: rgba(13, 0, 20, 0.88);
   backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--color-electric-purple);
-  box-shadow: 0 4px 20px rgba(127, 0, 178, 0.3);
+  box-shadow: 0 4px 20px rgba(127, 0, 178, 0.35);
 }
 
 .punk-brand-badge {
@@ -180,14 +179,14 @@ html, body {
 }
 
 /* =========================================================
-   INTRO SPLASH OVERLAY: CORAZÓN -> PULSO -> REVELACIÓN ANNY
+   INTRO SPLASH OVERLAY: CORAZÓN ULTRA PUNK -> TÍTULO ANNY
    ========================================================= */
 
 .intro-container {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: radial-gradient(circle at center, #1b002c 0%, #08000d 80%);
+  background: radial-gradient(circle at center, #1e0030 0%, #08000d 85%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,7 +204,7 @@ html, body {
 .intro-content {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,11 +213,11 @@ html, body {
   text-align: center;
 }
 
-/* Contenedor del Corazón SVG */
+/* Contenedor del Corazón Ultra Punk */
 .heart-wrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 250px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -227,9 +226,9 @@ html, body {
 }
 
 .heart-wrapper.heart-exploding {
-  transform: scale(1.4);
+  transform: scale(1.5);
   opacity: 0;
-  filter: blur(10px);
+  filter: blur(12px);
 }
 
 .heart-shockwave {
@@ -237,8 +236,8 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.5);
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: 2px solid var(--color-neon-pink);
   opacity: 0;
@@ -260,16 +259,25 @@ html, body {
     opacity: 0.9;
   }
   100% {
-    transform: translate(-50%, -50%) scale(2.4);
+    transform: translate(-50%, -50%) scale(2.6);
     opacity: 0;
   }
 }
 
-.punk-heart-svg {
+.punk-heart-svg.ultra-punk {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 0 15px rgba(253, 202, 225, 0.6));
+  filter: drop-shadow(0 0 20px rgba(253, 202, 225, 0.7));
+}
+
+.heart-spikes {
+  animation: spike-pulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes spike-pulse {
+  0% { transform: scale(0.98); opacity: 0.7; }
+  100% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 10px #fdcae1); }
 }
 
 .heart-bg-pulse {
@@ -277,45 +285,39 @@ html, body {
   animation: heart-beat 1.6s ease-in-out infinite;
 }
 
-/* Animación de trazado del corazón con stroke-dashoffset */
 .heart-draw-path {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
   animation: draw-heart-stroke 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+.heart-lightning {
+  animation: lightning-flash 1.2s infinite;
+}
+
+@keyframes lightning-flash {
+  0%, 90% { opacity: 0.4; }
+  92%, 96% { opacity: 1; filter: drop-shadow(0 0 8px #ffe5f0); }
+}
+
 @keyframes draw-heart-stroke {
-  0% {
-    stroke-dashoffset: 400;
-    opacity: 0.3;
-  }
-  60% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
+  0% { stroke-dashoffset: 450; opacity: 0.3; }
+  60% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
 }
 
 @keyframes heart-beat {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.35;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.7;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(1.1); opacity: 0.85; }
 }
 
 .intro-status {
   margin-top: 1.5rem;
   font-family: var(--font-punk-marker);
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 2px;
   color: var(--color-neon-pink);
-  text-shadow: 0 0 8px var(--color-neon-pink);
+  text-shadow: 0 0 10px var(--color-neon-pink);
 }
 
 /* =========================================================
@@ -345,7 +347,7 @@ html, body {
   display: none;
 }
 
-/* Cinta de cinta adhesiva punk */
+/* Cinta adhesiva */
 .tape-strip {
   background: var(--color-neon-pink);
   color: var(--color-deep-violet);
@@ -370,7 +372,7 @@ html, body {
   color: var(--color-pure-glow);
 }
 
-/* TÍTULO PRINCIPAL: ANNY */
+/* Título Gigante ANNY */
 .anny-title {
   font-family: var(--font-glitch);
   font-size: clamp(4.5rem, 15vw, 9rem);
@@ -494,15 +496,6 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
-/* HERO SECTION */
-.hero-section {
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 .punk-card {
@@ -521,13 +514,6 @@ html, body {
   box-shadow: 8px 8px 0px var(--color-neon-pink), 0 0 40px rgba(253, 202, 225, 0.3);
 }
 
-.hero-card {
-  max-width: 900px;
-  width: 100%;
-  text-align: center;
-  margin-top: 1rem;
-}
-
 .card-pin {
   position: absolute;
   top: -16px;
@@ -537,52 +523,142 @@ html, body {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
 }
 
-.tape-corner {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 70px;
-  height: 25px;
-  background: var(--color-dusty-rose);
-  opacity: 0.85;
-  transform: rotate(42deg);
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+/* =========================================================
+   SECCIÓN DE FOTO SPOTLIGHT Y TRIBUTO A ANNY
+   ========================================================= */
+
+.photo-spotlight-section {
+  width: 100%;
 }
 
-.hero-header {
-  display: flex;
-  justify-content: space-between;
+.photo-card-wrap {
+  padding: 2.5rem;
+}
+
+.photo-card-inner {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2.5rem;
   align-items: center;
-  margin-bottom: 1.2rem;
 }
 
-.tag-pill {
-  font-family: var(--font-punk-marker);
-  font-size: 0.85rem;
-  color: var(--color-neon-pink);
-  background: rgba(76, 0, 125, 0.6);
-  padding: 0.25rem 0.75rem;
+/* MARCO POLAROID PUNK */
+.polaroid-frame {
+  background: #fdf5f8;
+  padding: 1.2rem 1.2rem 1.8rem 1.2rem;
   border-radius: 4px;
-  border: 1px dashed var(--color-neon-pink);
+  transform: rotate(-2.5deg);
+  box-shadow: 8px 8px 0px var(--color-electric-purple), 0 0 30px rgba(253, 202, 225, 0.3);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.status-live {
+.polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.polaroid-image-holder {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background: #140020;
+  overflow: hidden;
+  border: 2px solid #000;
+}
+
+#anny-main-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.polaroid-frame:hover #anny-main-photo {
+  transform: scale(1.05);
+}
+
+.photo-badge-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: var(--color-deep-violet);
+  color: var(--color-neon-pink);
+  font-family: var(--font-punk-marker);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-neon-pink);
+  border-radius: 3px;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+}
+
+.polaroid-caption {
+  margin-top: 1rem;
+  text-align: center;
+  color: #140020;
+}
+
+.caption-name {
+  display: block;
+  font-family: var(--font-punk-marker);
+  font-size: 1.6rem;
+  color: var(--color-deep-violet);
+  letter-spacing: 2px;
+}
+
+.caption-sub {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--color-pure-glow);
+  font-size: 0.85rem;
+  color: #7f00b2;
+}
+
+.photo-upload-bar {
+  margin-top: 0.85rem;
+  text-align: center;
+}
+
+.photo-upload-label {
+  display: inline-block;
   background: var(--color-electric-purple);
-  padding: 0.25rem 0.6rem;
+  color: var(--color-pure-glow);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--color-neon-pink);
+  transition: all 0.2s ease;
+}
+
+.photo-upload-label:hover {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+  box-shadow: 0 0 10px var(--color-neon-pink);
+}
+
+#photo-file-input {
+  display: none;
+}
+
+/* HISTORIA / TEXTO DEDICADO */
+.photo-story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.story-tag {
+  font-family: var(--font-punk-marker);
+  font-size: 0.95rem;
+  color: var(--color-neon-pink);
   letter-spacing: 1px;
 }
 
-.hero-title {
+.story-title {
   font-family: var(--font-rocker);
-  font-size: clamp(2.5rem, 6vw, 4.2rem);
-  letter-spacing: 2px;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.15;
   color: var(--color-pure-glow);
 }
 
@@ -590,83 +666,61 @@ html, body {
   font-family: var(--font-glitch);
   color: var(--color-neon-pink);
   text-shadow: var(--glow-pink);
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   display: inline-block;
-  transform: scale(1.05);
 }
 
-.hero-description {
-  font-size: 1.15rem;
-  line-height: 1.6;
+.story-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: #ebd3df;
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
 }
 
-/* PALETA PUNK INTERACTIVA */
-.palette-container {
-  background: rgba(9, 0, 15, 0.85);
-  border: 1.5px solid var(--color-dusty-rose);
+.story-desc strong {
+  color: var(--color-neon-pink);
+}
+
+.qualities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.quality-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  background: rgba(13, 0, 20, 0.7);
+  padding: 0.85rem;
+  border: 1px solid rgba(127, 0, 178, 0.5);
   border-radius: 6px;
-  padding: 1.2rem;
-  margin-bottom: 2rem;
 }
 
-.palette-title {
+.q-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.quality-item strong {
+  display: block;
   font-family: var(--font-punk-marker);
   font-size: 0.95rem;
-  letter-spacing: 1px;
   color: var(--color-neon-pink);
-  margin-bottom: 0.85rem;
-  text-align: left;
+  margin-bottom: 2px;
 }
 
-.palette-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0.75rem;
+.quality-item p {
+  font-size: 0.82rem;
+  color: #d1b5c4;
+  line-height: 1.4;
 }
 
-.color-chip {
-  background-color: var(--chip-bg);
-  color: var(--chip-text);
-  padding: 0.75rem 0.5rem;
-  border-radius: 4px;
-  border: 2px solid #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-}
-
-.color-chip:hover {
-  transform: translateY(-4px) scale(1.06);
-  box-shadow: 4px 4px 0px var(--color-pure-glow);
-}
-
-.chip-name {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.chip-code {
-  font-family: monospace;
-  font-size: 0.9rem;
-  margin-top: 2px;
-}
-
-/* BOTONES DE ACCIÓN PRINCIPALES */
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: center;
+  margin-top: 0.5rem;
 }
 
 .punk-btn {
@@ -704,7 +758,82 @@ html, body {
 }
 
 /* =========================================================
-   SECCIÓN FANZINE & STICKERS
+   PALETA DE COLORES
+   ========================================================= */
+
+.palette-section {
+  width: 100%;
+}
+
+.palette-header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.palette-title {
+  font-family: var(--font-punk-marker);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--color-neon-pink);
+}
+
+.palette-sub {
+  font-size: 0.85rem;
+  color: var(--color-dusty-rose);
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.color-chip {
+  background-color: var(--chip-bg);
+  color: var(--chip-text);
+  padding: 1.1rem 0.8rem;
+  border-radius: 6px;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  text-align: center;
+}
+
+.color-chip:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 5px 5px 0px var(--color-pure-glow);
+}
+
+.chip-name {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chip-desc {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  margin: 3px 0;
+}
+
+.chip-code {
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+/* =========================================================
+   SECCIÓN FANZINE & CARTAS PARA ANNY
    ========================================================= */
 
 .fanzine-section {
@@ -789,24 +918,6 @@ html, body {
   letter-spacing: 1px;
 }
 
-.sticker-icon {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-  filter: drop-shadow(0 0 10px var(--color-neon-pink));
-}
-
-.interactive-hint {
-  margin-top: 1rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-neon-pink);
-  background: rgba(127, 0, 178, 0.3);
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  border: 1px dashed var(--color-neon-pink);
-}
-
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -841,7 +952,7 @@ html, body {
   box-shadow: 0 0 10px var(--color-neon-pink);
 }
 
-/* CASSETTE TAPE STYLING */
+/* CASSETTE TAPE */
 .cassette-body {
   background: #1e0030;
   border: 2px solid var(--color-dusty-rose);
@@ -921,7 +1032,7 @@ html, body {
   color: var(--color-dusty-rose);
 }
 
-/* CARD DE AGREGAR NOTA */
+/* AGREGAR NOTA */
 .add-note-card {
   border-style: dashed;
   border-color: var(--color-neon-pink);
@@ -931,7 +1042,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .note-input-group input {
@@ -970,7 +1081,7 @@ html, body {
 }
 
 /* =========================================================
-   PUNK MARQUEE BANNER
+   MARQUEE BANNER
    ========================================================= */
 
 .punk-banner-section {
@@ -1014,7 +1125,7 @@ html, body {
 }
 
 /* =========================================================
-   CURSOR PERSONALIZADO PUNK
+   CURSOR PERSONALIZADO
    ========================================================= */
 
 .punk-cursor {
@@ -1049,8 +1160,23 @@ html, body {
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
    ========================================================= */
+
+@media (max-width: 900px) {
+  .photo-card-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .polaroid-frame {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .qualities-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 768px) {
   .punk-nav {
@@ -1071,10 +1197,6 @@ html, body {
     padding: 1.5rem;
   }
 
-  .hero-title {
-    font-size: 2.3rem;
-  }
-
   .palette-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1084,7 +1206,6 @@ html, body {
   }
 }
 
-/* Animaciones Generales */
 @keyframes pulse-flash {
   0% { opacity: 0.7; transform: scale(0.95); }
   100% { opacity: 1; transform: scale(1.15); }

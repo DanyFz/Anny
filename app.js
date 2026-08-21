@@ -1,12 +1,12 @@
 /* =========================================================
-   ANNY - PINK PUNK INTERACTIVE ENGINE (app.js)
+   ANNY - MOTOR INTERACTIVO PINK PUNK & TRIBUTO A LA LÍDER
    Paleta: #c594aa, #fdcae1, #ffe5f0, #4c007d, #7f00b2
    ========================================================= */
 
 (function () {
   'use strict';
 
-  // --- AUDIO SYNTHESIZER (Web Audio API) ---
+  // --- SINTETIZADOR DE AUDIO PUNK (Web Audio API) ---
   class PunkAudioFX {
     constructor() {
       this.ctx = null;
@@ -31,10 +31,8 @@
       if (!this.ctx) return;
 
       const now = this.ctx.currentTime;
-      // Golpe 1 (Bajo sordo)
-      this._subKick(now, 75, 0.18);
-      // Golpe 2 (Pulso resonante)
-      this._subKick(now + 0.18, 90, 0.25);
+      this._subKick(now, 80, 0.18);
+      this._subKick(now + 0.18, 95, 0.25);
     }
 
     _subKick(startTime, freq, duration) {
@@ -61,7 +59,6 @@
       if (!this.ctx) return;
 
       const now = this.ctx.currentTime;
-      // Frecuencias para acorde de quinta Punk (E / E5 punk)
       const freqs = [164.81, 246.94, 329.63, 659.25];
 
       freqs.forEach((f) => {
@@ -69,7 +66,6 @@
         const gain = this.ctx.createGain();
         const distortion = this.ctx.createWaveShaper();
 
-        // Distorsión Punk saturada
         distortion.curve = this._makeDistortionCurve(180);
         distortion.oversample = '4x';
 
@@ -94,7 +90,7 @@
       if (!this.ctx) return;
 
       const now = this.ctx.currentTime;
-      const notes = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+      const notes = [523.25, 659.25, 783.99, 1046.5];
       notes.forEach((note, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
@@ -123,8 +119,8 @@
       const gain = this.ctx.createGain();
 
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(300, now);
-      osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(850, now + 0.08);
 
       gain.gain.setValueAtTime(0.3, now);
       gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
@@ -151,7 +147,7 @@
 
   const audio = new PunkAudioFX();
 
-  // --- CANVAS DE PARTÍCULAS PUNK & CORAZONES ---
+  // --- MOTOR DE PARTÍCULAS CANVAS (CORAZONES & CHISPAS) ---
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
   let particles = [];
@@ -169,10 +165,10 @@
     constructor(x, y, type = 'dot', vx = null, vy = null) {
       this.x = x;
       this.y = y;
-      this.type = type; // 'dot', 'heart', 'spark', 'star'
-      this.vx = vx !== null ? vx : (Math.random() - 0.5) * 3;
-      this.vy = vy !== null ? vy : (Math.random() - 0.5) * 3;
-      this.size = type === 'heart' ? Math.random() * 16 + 10 : Math.random() * 6 + 2;
+      this.type = type; // 'heart', 'star', 'spark', 'dot'
+      this.vx = vx !== null ? vx : (Math.random() - 0.5) * 3.5;
+      this.vy = vy !== null ? vy : (Math.random() - 0.5) * 3.5;
+      this.size = type === 'heart' ? Math.random() * 18 + 12 : Math.random() * 6 + 2;
       this.color = punkColors[Math.floor(Math.random() * punkColors.length)];
       this.alpha = 1;
       this.decay = Math.random() * 0.015 + 0.008;
@@ -183,7 +179,7 @@
     update() {
       this.x += this.vx;
       this.y += this.vy;
-      this.vy += 0.03; // Gravedad sutil
+      this.vy += 0.03;
       this.alpha -= this.decay;
       this.rotation += this.rotSpeed;
     }
@@ -196,10 +192,9 @@
       c.rotate(this.rotation);
 
       if (this.type === 'heart') {
-        // Dibujar corazón punk
         c.fillStyle = this.color;
         c.shadowColor = this.color;
-        c.shadowBlur = 8;
+        c.shadowBlur = 10;
         c.beginPath();
         const s = this.size / 15;
         c.moveTo(0, 0);
@@ -209,10 +204,9 @@
         c.bezierCurveTo(15 * s, -5 * s, 5 * s, -10 * s, 0, 0);
         c.fill();
       } else if (this.type === 'star') {
-        // Estrella punk de 4 puntas
         c.fillStyle = this.color;
         c.shadowColor = this.color;
-        c.shadowBlur = 10;
+        c.shadowBlur = 12;
         const s = this.size;
         c.beginPath();
         c.moveTo(0, -s);
@@ -226,7 +220,6 @@
         c.closePath();
         c.fill();
       } else {
-        // Chispa / punto de neón
         c.fillStyle = this.color;
         c.shadowColor = this.color;
         c.shadowBlur = 6;
@@ -251,14 +244,13 @@
     }
   }
 
-  // Floating background ambient particles
   function addAmbientParticles() {
-    if (particles.length < 50 && Math.random() < 0.3) {
+    if (particles.length < 50 && Math.random() < 0.35) {
       const x = Math.random() * window.innerWidth;
       const y = window.innerHeight + 10;
       const vx = (Math.random() - 0.5) * 1.5;
       const vy = -(Math.random() * 2 + 1);
-      const p = new Particle(x, y, Math.random() < 0.4 ? 'heart' : 'spark', vx, vy);
+      const p = new Particle(x, y, Math.random() < 0.5 ? 'heart' : 'spark', vx, vy);
       p.decay = 0.004;
       particles.push(p);
     }
@@ -282,7 +274,7 @@
   }
   requestAnimationFrame(animateCanvas);
 
-  // --- SECUENCIA DE INTRODUCCIÓN (CORAZÓN -> REVELACIÓN ANNY) ---
+  // --- ORQUESTACIÓN DE LA INTRODUCCIÓN ---
   const introOverlay = document.getElementById('intro-overlay');
   const heartWrapper = document.getElementById('heart-wrapper');
   const heartPath = document.getElementById('heart-path');
@@ -303,18 +295,16 @@
     titleRevealBox.classList.add('hidden');
     titleRevealBox.classList.remove('show');
 
-    // Reiniciar trazado del corazón
     if (heartPath) {
       heartPath.style.animation = 'none';
-      void heartPath.offsetHeight; // Trigger reflow
+      void heartPath.offsetHeight;
       heartPath.style.animation = 'draw-heart-stroke 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards';
     }
 
     if (introStatusText) {
-      introStatusText.innerHTML = '<span class="glitch-text" data-text="GENERATING CORE...">GENERATING CORE...</span>';
+      introStatusText.innerHTML = '<span class="glitch-text" data-text="GENERANDO CORAZÓN PUNK...">GENERANDO CORAZÓN PUNK...</span>';
     }
 
-    // Paso 1: Pulsos de sonido y shockwaves mientras se dibuja
     setTimeout(() => {
       audio.playHeartbeat();
       if (shockwave1) shockwave1.classList.add('active');
@@ -325,19 +315,16 @@
       if (shockwave2) shockwave2.classList.add('active');
     }, 1600);
 
-    // Paso 2: Finalización del corazón y preparación de explosión
     setTimeout(() => {
       if (introStatusText) {
-        introStatusText.innerHTML = '<span class="glitch-text" data-text="★ ANNY DETECTED ⚡ ★">★ ANNY DETECTED ⚡ ★</span>';
+        introStatusText.innerHTML = '<span class="glitch-text" data-text="★ LA LÍDER: ANNY ⚡ ★">★ LA LÍDER: ANNY ⚡ ★</span>';
       }
       audio.playSparkle();
     }, 2200);
 
-    // Paso 3: Explosión del corazón en partículas y revelación de ANNY
     setTimeout(() => {
       heartWrapper.classList.add('heart-exploding');
 
-      // Explosión central en el canvas
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
       spawnBurst(cx, cy, 70);
@@ -353,37 +340,63 @@
     }, 3000);
   }
 
-  // Iniciar al cargar
   window.addEventListener('DOMContentLoaded', () => {
     runIntroSequence();
   });
 
-  // Botón de entrar al universo
+  // Botón "DESCUBRIR EL MUNDO DE ANNY" -> Desplaza suavemente a la foto y tributo
   if (enterUniverseBtn) {
     enterUniverseBtn.addEventListener('click', () => {
       audio.playPowerChord();
       introOverlay.classList.add('hidden-intro');
-      spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
+      spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 60);
+
+      // Enfocar hacia la foto y tarjeta principal
+      setTimeout(() => {
+        const photoSection = document.getElementById('photo-spotlight-section');
+        if (photoSection) {
+          photoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
     });
   }
 
-  // Botón de replay
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       audio.playPop();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       runIntroSequence();
     });
   }
 
-  // --- INTERACCIÓN GLOBAL CON CLICK (PARTÍCULAS & GRAFFITI) ---
+  // --- CARGA DE FOTO DE ANNY EN TIEMPO REAL ---
+  const photoFileInput = document.getElementById('photo-file-input');
+  const annyMainPhoto = document.getElementById('anny-main-photo');
+
+  if (photoFileInput && annyMainPhoto) {
+    photoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          annyMainPhoto.src = event.target.result;
+          audio.playSparkle();
+          const rect = annyMainPhoto.getBoundingClientRect();
+          spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  // --- INTERACCIÓN GLOBAL AL HACER CLICK ---
   window.addEventListener('pointerdown', (e) => {
-    // Si no es un botón o input
-    if (['BUTTON', 'INPUT', 'A'].includes(e.target.tagName)) return;
+    if (['BUTTON', 'INPUT', 'LABEL', 'A'].includes(e.target.tagName)) return;
     spawnBurst(e.clientX, e.clientY, 20);
     audio.playPop();
   });
 
-  // --- BOTONES DE HERO & ACCIONES ---
+  // --- BOTONES DE ACCIÓN ---
   const blastHeartsBtn = document.getElementById('blast-hearts-btn');
   if (blastHeartsBtn) {
     blastHeartsBtn.addEventListener('click', (e) => {
@@ -399,11 +412,11 @@
   if (guitarRiffBtn) {
     guitarRiffBtn.addEventListener('click', () => {
       audio.playPowerChord();
-      spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
+      spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 45);
     });
   }
 
-  // Copiar código hex al hacer clic en las muestras de color
+  // Copiar código hex
   const colorChips = document.querySelectorAll('.color-chip');
   colorChips.forEach((chip) => {
     chip.addEventListener('click', () => {
@@ -420,21 +433,21 @@
     });
   });
 
-  // Like button interactivo
-  const likeBtn = document.querySelector('.like-heart-btn');
-  if (likeBtn) {
-    likeBtn.addEventListener('click', (e) => {
+  // Like buttons
+  const likeBtns = document.querySelectorAll('.like-heart-btn');
+  likeBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const countEl = likeBtn.querySelector('.like-count');
+      const countEl = btn.querySelector('.like-count');
       let current = parseInt(countEl.textContent, 10) || 0;
       countEl.textContent = current + 1;
       audio.playSparkle();
-      const rect = likeBtn.getBoundingClientRect();
-      spawnBurst(rect.left + rect.width / 2, rect.top, 15);
+      const rect = btn.getBoundingClientRect();
+      spawnBurst(rect.left + rect.width / 2, rect.top, 18);
     });
-  }
+  });
 
-  // --- REPRODUCTOR DE CASSETTE VISUAL ---
+  // --- CASSETTE MUSICAL ---
   const cassetteBtn = document.getElementById('cassette-play-btn');
   const cassetteStatus = document.getElementById('cassette-status');
   const wheels = document.querySelectorAll('.wheel');
@@ -446,19 +459,18 @@
       e.stopPropagation();
       isPlayingCassette = !isPlayingCassette;
       if (isPlayingCassette) {
-        cassetteBtn.textContent = '⏸ PAUSE BEAT';
-        cassetteStatus.textContent = 'PLAYING ⚡';
+        cassetteBtn.textContent = '⏸ PAUSAR RITMO';
+        cassetteStatus.textContent = 'SONANDO ⚡';
         cassetteStatus.style.color = '#fdcae1';
         wheels.forEach((w) => w.classList.add('spinning'));
 
-        // Reproducir riff rítmico
         audio.playPowerChord();
         cassetteInterval = setInterval(() => {
           audio.playHeartbeat();
         }, 800);
       } else {
-        cassetteBtn.textContent = '▶ PLAY BEAT';
-        cassetteStatus.textContent = 'STOPPED';
+        cassetteBtn.textContent = '▶ ACTIVAR RITMO';
+        cassetteStatus.textContent = 'EN PAUSA';
         cassetteStatus.style.color = '#c594aa';
         wheels.forEach((w) => w.classList.remove('spinning'));
         clearInterval(cassetteInterval);
@@ -466,7 +478,7 @@
     });
   }
 
-  // --- CREADOR DE STICKERS / NOTAS PERSONALIZADAS ---
+  // --- CREADOR DE NOTAS PERSONALIZADAS ---
   const customNoteInput = document.getElementById('custom-note-input');
   const addNoteBtn = document.getElementById('add-note-btn');
   const dynamicStickersContainer = document.getElementById('dynamic-stickers-container');
@@ -481,12 +493,12 @@
     const card = document.createElement('div');
     card.className = `punk-card sticker-card ${randomTilt}`;
     card.innerHTML = `
-      <div class="tape-strip mini-tape pink-tape">ANNY FAN ⚡</div>
-      <div class="sticker-badge">NEW!</div>
-      <h4 class="card-title">★ PUNK NOTE</h4>
+      <div class="tape-strip mini-tape pink-tape">MENSAJE ESPECIAL ⚡</div>
+      <div class="sticker-badge">PARA ANNY</div>
+      <h4 class="card-title">★ RECUERDO</h4>
       <p style="font-size: 1.1rem; color: #ffe5f0;">"${text}"</p>
       <div class="card-footer">
-        <span class="punk-hashtag">#AnnyRebel</span>
+        <span class="punk-hashtag">#AnnyBrillante</span>
         <button class="punk-mini-btn" onclick="this.closest('.sticker-card').remove()">🗑️ QUITAR</button>
       </div>
     `;
@@ -527,7 +539,7 @@
     });
   }
 
-  // --- CURSOR PUNK PERSONALIZADO ---
+  // --- CURSOR PERSONALIZADO ---
   const cursor = document.getElementById('punk-cursor');
   const cursorDot = document.getElementById('punk-cursor-dot');
 
@@ -539,7 +551,6 @@
       cursorDot.style.top = `${e.clientY}px`;
     }
 
-    // Efecto estela de partículas ocasionales
     if (Math.random() < 0.15) {
       particles.push(new Particle(e.clientX, e.clientY, 'dot', (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2));
     }
