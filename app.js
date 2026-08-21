@@ -459,6 +459,7 @@
   // --- CASSETTE ---
   const cassetteBtn = document.getElementById('cassette-play-btn');
   const cassetteStatus = document.getElementById('cassette-status');
+  const customAudio = document.getElementById('anny-custom-audio');
   const wheels = document.querySelectorAll('.wheel');
   let isPlayingCassette = false;
   let cassetteInterval = null;
@@ -467,24 +468,49 @@
     cassetteBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       isPlayingCassette = !isPlayingCassette;
+      
       if (isPlayingCassette) {
         cassetteBtn.textContent = 'PAUSAR';
         cassetteStatus.textContent = 'REPRODUCIENDO';
         cassetteStatus.style.color = '#fdcae1';
         wheels.forEach((w) => w.classList.add('spinning'));
 
-        audio.playPowerChord();
-        cassetteInterval = setInterval(() => {
-          audio.playHeartbeat();
-        }, 800);
+        // Si hay archivo de audio personalizado, reproducirlo
+        if (customAudio && customAudio.src) {
+          customAudio.play().catch(() => {
+            // Si el archivo no existe aún, usar sintetizador
+            audio.playPowerChord();
+            cassetteInterval = setInterval(() => {
+              audio.playHeartbeat();
+            }, 800);
+          });
+        } else {
+          audio.playPowerChord();
+          cassetteInterval = setInterval(() => {
+            audio.playHeartbeat();
+          }, 800);
+        }
       } else {
         cassetteBtn.textContent = 'REPRODUCIR';
         cassetteStatus.textContent = 'EN PAUSA';
         cassetteStatus.style.color = '#c594aa';
         wheels.forEach((w) => w.classList.remove('spinning'));
+        if (customAudio) {
+          customAudio.pause();
+        }
         clearInterval(cassetteInterval);
       }
     });
+
+    if (customAudio) {
+      customAudio.addEventListener('ended', () => {
+        isPlayingCassette = false;
+        cassetteBtn.textContent = 'REPRODUCIR';
+        cassetteStatus.textContent = 'EN PAUSA';
+        cassetteStatus.style.color = '#c594aa';
+        wheels.forEach((w) => w.classList.remove('spinning'));
+      });
+    }
   }
 
   // --- CREADOR DE NOTAS ---
