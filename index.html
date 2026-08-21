@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Anny ⚡ Con todo el cariño</title>
-  <meta name="description" content="Un espacio interactivo dedicado a Anny: por sus ojos que hipnotizan, su estilo único, su voz dulce y todo lo que la hace tan especial.">
+  <meta name="description" content="Un espacio interactivo con cartas de tarot dedicadas a Anny: Sincera, Gentil, Empática, Graciosa, Interesante y Capaz.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +25,8 @@
   <!-- Barra Superior -->
   <header class="punk-nav">
     <div class="punk-brand-badge">
-      <span class="lightning">💖</span>
-      <span class="badge-text">UN ESPACIO PARA TI, ANNY</span>
+      <span class="lightning">🔮</span>
+      <span class="badge-text">EL TAROT DE ANNY</span>
     </div>
     <div class="nav-controls">
       <button id="sound-toggle-btn" class="punk-mini-btn" title="Activar/Desactivar Sonido">
@@ -133,7 +133,7 @@
           <span class="sub-badge">TODO LO QUE ERES</span>
         </div>
         <button id="enter-universe-btn" class="punk-action-btn">
-          <span>DESCUBRIR LO QUE HAY AQUÍ</span> ⚡
+          <span>DESCUBRIR EL TAROT</span> 🔮
         </button>
       </div>
 
@@ -145,7 +145,7 @@
        ============================================== -->
   <main id="main-content" class="main-content">
     
-    <!-- FOTO Y CARTA PERSONAL PARA ANNY -->
+    <!-- FOTO Y PRESENTACIÓN -->
     <section id="photo-spotlight-section" class="photo-spotlight-section">
       <div class="punk-card photo-card-wrap">
         <div class="tape-strip mini-tape pink-tape">HOLA, ANNY 🖤</div>
@@ -172,7 +172,7 @@
             </div>
           </div>
 
-          <!-- Mensaje Cercano y Personal -->
+          <!-- Mensaje Cercano -->
           <div class="photo-story-content">
             <div class="story-tag">⚡ PARA ALGUIEN MUY ESPECIAL</div>
             <h2 class="story-title">
@@ -185,13 +185,13 @@
               Eres de esas personas que dejan huella donde van, con una energía que contagia y una autenticidad hermosa.
             </p>
 
-            <!-- Cualidades en tono humano -->
+            <!-- Cualidades -->
             <div class="qualities-grid">
               <div class="quality-item">
                 <span class="q-icon">👁️</span>
                 <div>
                   <strong>Tu mirada</strong>
-                  <p>Tienes unos ojos que hipnotizan a cualquiera desde el primer segundo.</p>
+                  <p>Ojos que hipnotizan a cualquiera.</p>
                 </div>
               </div>
 
@@ -199,7 +199,7 @@
                 <span class="q-icon">🎙️</span>
                 <div>
                   <strong>Tu voz</strong>
-                  <p>Esa forma tan dulce y tranquila de hablar que siempre alegra el momento.</p>
+                  <p>Dulce y tranquila al hablar.</p>
                 </div>
               </div>
 
@@ -207,15 +207,15 @@
                 <span class="q-icon">💫</span>
                 <div>
                   <strong>Tu estilo</strong>
-                  <p>Llamativo, seguro y con una onda única que solo tú sabes llevar.</p>
+                  <p>Llamativo y con onda única.</p>
                 </div>
               </div>
 
               <div class="quality-item">
                 <span class="q-icon">💖</span>
                 <div>
-                  <strong>Tu gran corazón</strong>
-                  <p>Esa amabilidad natural y esa gentileza que te hace tan especial.</p>
+                  <strong>Tu corazón</strong>
+                  <p>Amable, atenta y noble.</p>
                 </div>
               </div>
             </div>
@@ -228,7 +228,7 @@
                 🎸 ONDA PUNK
               </button>
               <a href="#reveal-cards-section" class="punk-btn tertiary">
-                🎴 DESCUBRIR CARTAS
+                🔮 CARTAS DEL TAROT
               </a>
             </div>
           </div>
@@ -238,145 +238,159 @@
     </section>
 
     <!-- ==============================================
-         OBJETO INTERACTIVO: CARTAS QUE REVELAN LO QUE ME GUSTA DE ELLA
+         OBJETO INTERACTIVO: CARTAS DEL TAROT DE ANNY
          ============================================== -->
     <section id="reveal-cards-section" class="reveal-cards-section">
       <div class="punk-card deck-main-card">
-        <div class="tape-strip mini-tape pink-tape">INTERACTIVO 🎴</div>
+        <div class="tape-strip mini-tape pink-tape">EL TAROT DE ANNY 🔮</div>
         <div class="card-pin">📌</div>
 
         <div class="deck-header">
-          <h3 class="deck-title">✨ COSAS QUE ME GUSTAN DE TI</h3>
-          <p class="deck-sub">Toca cada carta para darle la vuelta y descubrir lo que hay detrás:</p>
+          <h3 class="deck-title">✨ CARTAS DEL TAROT</h3>
+          <p class="deck-sub">Toca cada arcano para voltearlo y revelar su esencia:</p>
           <div class="deck-progress">
-            <span id="revealed-count-text">Has descubierto <strong id="revealed-count">0</strong> de 6 cartas 💖</span>
+            <span id="revealed-count-text">Has revelado <strong id="revealed-count">0</strong> de 6 cartas 🔮</span>
           </div>
         </div>
 
-        <div class="cards-interactive-grid">
+        <div class="cards-interactive-grid tarot-grid">
           
           <!-- Carta 1: Sincera -->
-          <div class="flip-card" data-card-id="1">
+          <div class="flip-card tarot-card" data-card-id="1">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="card-sparkle">★</div>
-                <div class="card-number">01</div>
-                <div class="card-center-symbol">💎</div>
-                <h4 class="card-front-title">TOCA AQUÍ</h4>
-                <span class="card-front-hint">descubrir ✨</span>
+              <!-- Dorso Tarot -->
+              <div class="flip-card-front tarot-back">
+                <div class="tarot-border-decor"></div>
+                <span class="tarot-card-num-front">I</span>
+                <div class="tarot-back-art">
+                  <div class="tarot-sun-moon">☀️🌙</div>
+                  <div class="tarot-eye">👁️</div>
+                </div>
+                <span class="tarot-back-label">EL ARCANO</span>
+                <span class="tarot-tap-hint">TOCA PARA REVELAR</span>
               </div>
-              <div class="flip-card-back">
-                <span class="card-back-badge">01 • ESENCIA</span>
-                <h4 class="card-trait-name">SINCERA</h4>
-                <p class="card-trait-desc">
-                  Dices las cosas de frente y con el corazón. Tu honestidad y transparencia valen oro y hacen que confiar en ti sea lo más natural del mundo.
-                </p>
-                <div class="card-back-footer">💖 100% auténtica</div>
+              <!-- Frente Revelado Tarot (Solo la palabra) -->
+              <div class="flip-card-back tarot-front">
+                <div class="tarot-border-decor"></div>
+                <div class="tarot-header-num">I</div>
+                <div class="tarot-illustration">💎</div>
+                <h4 class="tarot-word">SINCERA</h4>
+                <div class="tarot-footer-stars">✦ ✦ ✦</div>
               </div>
             </div>
           </div>
 
           <!-- Carta 2: Gentil -->
-          <div class="flip-card" data-card-id="2">
+          <div class="flip-card tarot-card" data-card-id="2">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="card-sparkle">★</div>
-                <div class="card-number">02</div>
-                <div class="card-center-symbol">🌸</div>
-                <h4 class="card-front-title">TOCA AQUÍ</h4>
-                <span class="card-front-hint">descubrir ✨</span>
+              <div class="flip-card-front tarot-back">
+                <div class="tarot-border-decor"></div>
+                <span class="tarot-card-num-front">II</span>
+                <div class="tarot-back-art">
+                  <div class="tarot-sun-moon">🌸✨</div>
+                  <div class="tarot-eye">👁️</div>
+                </div>
+                <span class="tarot-back-label">EL ARCANO</span>
+                <span class="tarot-tap-hint">TOCA PARA REVELAR</span>
               </div>
-              <div class="flip-card-back">
-                <span class="card-back-badge">02 • TRATO</span>
-                <h4 class="card-trait-name">GENTIL</h4>
-                <p class="card-trait-desc">
-                  Tienes una delicadeza y una amabilidad innata. La forma en que tratas a las personas y te preocupas por los demás te hace única.
-                </p>
-                <div class="card-back-footer">✨ corazón noble</div>
+              <div class="flip-card-back tarot-front">
+                <div class="tarot-border-decor"></div>
+                <div class="tarot-header-num">II</div>
+                <div class="tarot-illustration">🌸</div>
+                <h4 class="tarot-word">GENTIL</h4>
+                <div class="tarot-footer-stars">✦ ✦ ✦</div>
               </div>
             </div>
           </div>
 
           <!-- Carta 3: Empática -->
-          <div class="flip-card" data-card-id="3">
+          <div class="flip-card tarot-card" data-card-id="3">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="card-sparkle">★</div>
-                <div class="card-number">03</div>
-                <div class="card-center-symbol">🤍</div>
-                <h4 class="card-front-title">TOCA AQUÍ</h4>
-                <span class="card-front-hint">descubrir ✨</span>
+              <div class="flip-card-front tarot-back">
+                <div class="tarot-border-decor"></div>
+                <span class="tarot-card-num-front">III</span>
+                <div class="tarot-back-art">
+                  <div class="tarot-sun-moon">🤍🔮</div>
+                  <div class="tarot-eye">👁️</div>
+                </div>
+                <span class="tarot-back-label">EL ARCANO</span>
+                <span class="tarot-tap-hint">TOCA PARA REVELAR</span>
               </div>
-              <div class="flip-card-back">
-                <span class="card-back-badge">03 • CONEXIÓN</span>
-                <h4 class="card-trait-name">EMPÁTICA</h4>
-                <p class="card-trait-desc">
-                  Sabes escuchar de verdad. Tienes esa capacidad tan linda de ponerte en el lugar del otro y hacer que quien esté contigo se sienta comprendido.
-                </p>
-                <div class="card-back-footer">🤝 siempre ahí</div>
+              <div class="flip-card-back tarot-front">
+                <div class="tarot-border-decor"></div>
+                <div class="tarot-header-num">III</div>
+                <div class="tarot-illustration">🤍</div>
+                <h4 class="tarot-word">EMPÁTICA</h4>
+                <div class="tarot-footer-stars">✦ ✦ ✦</div>
               </div>
             </div>
           </div>
 
           <!-- Carta 4: Graciosa -->
-          <div class="flip-card" data-card-id="4">
+          <div class="flip-card tarot-card" data-card-id="4">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="card-sparkle">★</div>
-                <div class="card-number">04</div>
-                <div class="card-center-symbol">😄</div>
-                <h4 class="card-front-title">TOCA AQUÍ</h4>
-                <span class="card-front-hint">descubrir ✨</span>
+              <div class="flip-card-front tarot-back">
+                <div class="tarot-border-decor"></div>
+                <span class="tarot-card-num-front">IV</span>
+                <div class="tarot-back-art">
+                  <div class="tarot-sun-moon">😄⚡</div>
+                  <div class="tarot-eye">👁️</div>
+                </div>
+                <span class="tarot-back-label">EL ARCANO</span>
+                <span class="tarot-tap-hint">TOCA PARA REVELAR</span>
               </div>
-              <div class="flip-card-back">
-                <span class="card-back-badge">04 • ALEGRÍA</span>
-                <h4 class="card-trait-name">GRACIOSA</h4>
-                <p class="card-trait-desc">
-                  Tus ocurrencias, tus risas y tu sentido del humor hacen que cualquier momento se vuelva ligero, divertido y memorable.
-                </p>
-                <div class="card-back-footer">⚡ risas aseguradas</div>
+              <div class="flip-card-back tarot-front">
+                <div class="tarot-border-decor"></div>
+                <div class="tarot-header-num">IV</div>
+                <div class="tarot-illustration">😄</div>
+                <h4 class="tarot-word">GRACIOSA</h4>
+                <div class="tarot-footer-stars">✦ ✦ ✦</div>
               </div>
             </div>
           </div>
 
           <!-- Carta 5: Interesante -->
-          <div class="flip-card" data-card-id="5">
+          <div class="flip-card tarot-card" data-card-id="5">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="card-sparkle">★</div>
-                <div class="card-number">05</div>
-                <div class="card-center-symbol">🔮</div>
-                <h4 class="card-front-title">TOCA AQUÍ</h4>
-                <span class="card-front-hint">descubrir ✨</span>
+              <div class="flip-card-front tarot-back">
+                <div class="tarot-border-decor"></div>
+                <span class="tarot-card-num-front">V</span>
+                <div class="tarot-back-art">
+                  <div class="tarot-sun-moon">🔮🌙</div>
+                  <div class="tarot-eye">👁️</div>
+                </div>
+                <span class="tarot-back-label">EL ARCANO</span>
+                <span class="tarot-tap-hint">TOCA PARA REVELAR</span>
               </div>
-              <div class="flip-card-back">
-                <span class="card-back-badge">05 • MENTE</span>
-                <h4 class="card-trait-name">INTERESANTE</h4>
-                <p class="card-trait-desc">
-                  Hablar contigo nunca aburre. Tienes una forma tan particular y profunda de ver las cosas, con ideas y gustos que dan ganas de escuchar por horas.
-                </p>
-                <div class="card-back-footer">💫 fascinante</div>
+              <div class="flip-card-back tarot-front">
+                <div class="tarot-border-decor"></div>
+                <div class="tarot-header-num">V</div>
+                <div class="tarot-illustration">🔮</div>
+                <h4 class="tarot-word">INTERESANTE</h4>
+                <div class="tarot-footer-stars">✦ ✦ ✦</div>
               </div>
             </div>
           </div>
 
           <!-- Carta 6: Capaz -->
-          <div class="flip-card" data-card-id="6">
+          <div class="flip-card tarot-card" data-card-id="6">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="card-sparkle">★</div>
-                <div class="card-number">06</div>
-                <div class="card-center-symbol">⚡</div>
-                <h4 class="card-front-title">TOCA AQUÍ</h4>
-                <span class="card-front-hint">descubrir ✨</span>
+              <div class="flip-card-front tarot-back">
+                <div class="tarot-border-decor"></div>
+                <span class="tarot-card-num-front">VI</span>
+                <div class="tarot-back-art">
+                  <div class="tarot-sun-moon">⚡👑</div>
+                  <div class="tarot-eye">👁️</div>
+                </div>
+                <span class="tarot-back-label">EL ARCANO</span>
+                <span class="tarot-tap-hint">TOCA PARA REVELAR</span>
               </div>
-              <div class="flip-card-back">
-                <span class="card-back-badge">06 • FUERZA</span>
-                <h4 class="card-trait-name">CAPAZ</h4>
-                <p class="card-trait-desc">
-                  Cosa que te propones, cosa que sacas adelante. Tienes determinación, inteligencia y la fuerza necesaria para lograr todo lo que sueñes.
-                </p>
-                <div class="card-back-footer">👑 imparable</div>
+              <div class="flip-card-back tarot-front">
+                <div class="tarot-border-decor"></div>
+                <div class="tarot-header-num">VI</div>
+                <div class="tarot-illustration">⚡</div>
+                <h4 class="tarot-word">CAPAZ</h4>
+                <div class="tarot-footer-stars">✦ ✦ ✦</div>
               </div>
             </div>
           </div>
@@ -384,7 +398,7 @@
         </div>
 
         <div id="deck-unlocked-message" class="deck-unlocked-message hidden">
-          <span>🎉 ¡Descubriste todas las cartas! Anny, eres increíble tal como eres 💖⚡</span>
+          <span>🔮 ¡El Tarot de Anny ha sido revelado por completo! Eres mágica 💖⚡</span>
         </div>
       </div>
     </section>
@@ -468,7 +482,7 @@
   </main>
 
   <!-- Cursor Personalizado -->
-  <div id="punk-cursor" class="punk-cursor">✨</div>
+  <div id="punk-cursor" class="punk-cursor">🔮</div>
   <div id="punk-cursor-dot" class="punk-cursor-dot"></div>
 
   <!-- Lógica y Audio -->
