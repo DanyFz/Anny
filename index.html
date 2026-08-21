@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Anny ⚡ Con todo el cariño</title>
-  <meta name="description" content="Un espacio dedicado a Anny: por sus ojos que hipnotizan, su estilo único, su voz dulce, su arte y su forma tan linda de ser.">
+  <meta name="description" content="Un espacio interactivo dedicado a Anny: por sus ojos que hipnotizan, su estilo único, su voz dulce y todo lo que la hace tan especial.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,10 +130,10 @@
         <div class="subtitle-tag">
           <span class="sub-badge">DULZURA EN TU VOZ</span>
           <span class="dot-sep">•</span>
-          <span class="sub-badge">MAGIA EN TU ARTE</span>
+          <span class="sub-badge">TODO LO QUE ERES</span>
         </div>
         <button id="enter-universe-btn" class="punk-action-btn">
-          <span>VER LO QUE HAY AQUÍ</span> ⚡
+          <span>DESCUBRIR LO QUE HAY AQUÍ</span> ⚡
         </button>
       </div>
 
@@ -182,7 +182,7 @@
               Y tú eres una de ellas. Tienes esa mezcla tan tuya: unos <strong>ojos que hipnotizan</strong> y se quedan grabados, un <strong>estilo llamativo</strong> con muchísima personalidad, y esa <strong>voz tan dulce</strong> que transmite calma cada vez que hablas.
             </p>
             <p class="story-desc">
-              Además de lo linda, gentil y atenta que eres con todo el mundo, da gusto verte crear cuando dibujas y la pasión que le pones a cada cosa que haces. Tienes una luz propia que inspira.
+              Eres de esas personas que dejan huella donde van, con una energía que contagia y una autenticidad hermosa.
             </p>
 
             <!-- Cualidades en tono humano -->
@@ -204,10 +204,10 @@
               </div>
 
               <div class="quality-item">
-                <span class="q-icon">🎨</span>
+                <span class="q-icon">💫</span>
                 <div>
-                  <strong>Tu arte</strong>
-                  <p>Cuando te pones a dibujar se nota el amor y el talento que le pones a cada trazo.</p>
+                  <strong>Tu estilo</strong>
+                  <p>Llamativo, seguro y con una onda única que solo tú sabes llevar.</p>
                 </div>
               </div>
 
@@ -215,7 +215,7 @@
                 <span class="q-icon">💖</span>
                 <div>
                   <strong>Tu gran corazón</strong>
-                  <p>Esa amabilidad natural y esa gentileza que te hace tan especial y única.</p>
+                  <p>Esa amabilidad natural y esa gentileza que te hace tan especial.</p>
                 </div>
               </div>
             </div>
@@ -227,8 +227,8 @@
               <button id="guitar-riff-btn" class="punk-btn secondary">
                 🎸 ONDA PUNK
               </button>
-              <a href="#art-studio-section" class="punk-btn tertiary">
-                🎨 TU LIENZO DE DIBUJO
+              <a href="#reveal-cards-section" class="punk-btn tertiary">
+                🎴 DESCUBRIR CARTAS
               </a>
             </div>
           </div>
@@ -237,36 +237,159 @@
       </div>
     </section>
 
-    <!-- LIENZO DE DIBUJO INTERACTIVO -->
-    <section id="art-studio-section" class="art-studio-section">
-      <div class="punk-card studio-card">
-        <div class="tape-strip mini-tape pink-tape">ESPACIO DE DIBUJO</div>
+    <!-- ==============================================
+         OBJETO INTERACTIVO: CARTAS QUE REVELAN LO QUE ME GUSTA DE ELLA
+         ============================================== -->
+    <section id="reveal-cards-section" class="reveal-cards-section">
+      <div class="punk-card deck-main-card">
+        <div class="tape-strip mini-tape pink-tape">INTERACTIVO 🎴</div>
         <div class="card-pin">📌</div>
 
-        <div class="studio-header">
-          <div>
-            <h3 class="studio-title">🎨 UN LIENZO PARA DIBUJAR</h3>
-            <p class="studio-sub">Como te gusta tanto el arte, aquí tienes un espacio para hacer trazos de neón y crear lo que quieras.</p>
-          </div>
-          <div class="brush-controls">
-            <span class="tool-label">COLOR:</span>
-            <button class="brush-btn active" data-color="#fdcae1" style="--btn-c: #fdcae1;" title="Rosa Neón"></button>
-            <button class="brush-btn" data-color="#ffe5f0" style="--btn-c: #ffe5f0;" title="Luz"></button>
-            <button class="brush-btn" data-color="#7f00b2" style="--btn-c: #7f00b2;" title="Púrpura"></button>
-            <button class="brush-btn" data-color="#c594aa" style="--btn-c: #c594aa;" title="Rosa Ceniza"></button>
-            <button id="clear-sketch-btn" class="punk-mini-btn" title="Limpiar">🧹 BORRAR</button>
-            <button id="save-sketch-btn" class="punk-mini-btn highlight" title="Descargar">💾 GUARDAR</button>
+        <div class="deck-header">
+          <h3 class="deck-title">✨ COSAS QUE ME GUSTAN DE TI</h3>
+          <p class="deck-sub">Toca cada carta para darle la vuelta y descubrir lo que hay detrás:</p>
+          <div class="deck-progress">
+            <span id="revealed-count-text">Has descubierto <strong id="revealed-count">0</strong> de 6 cartas 💖</span>
           </div>
         </div>
 
-        <div class="sketch-wrapper">
-          <canvas id="sketch-canvas" width="800" height="340"></canvas>
-          <div class="sketch-hint">✨ ¡Dibuja aquí con el mouse o con tu dedo!</div>
+        <div class="cards-interactive-grid">
+          
+          <!-- Carta 1: Sincera -->
+          <div class="flip-card" data-card-id="1">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-sparkle">★</div>
+                <div class="card-number">01</div>
+                <div class="card-center-symbol">💎</div>
+                <h4 class="card-front-title">TOCA AQUÍ</h4>
+                <span class="card-front-hint">descubrir ✨</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="card-back-badge">01 • ESENCIA</span>
+                <h4 class="card-trait-name">SINCERA</h4>
+                <p class="card-trait-desc">
+                  Dices las cosas de frente y con el corazón. Tu honestidad y transparencia valen oro y hacen que confiar en ti sea lo más natural del mundo.
+                </p>
+                <div class="card-back-footer">💖 100% auténtica</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta 2: Gentil -->
+          <div class="flip-card" data-card-id="2">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-sparkle">★</div>
+                <div class="card-number">02</div>
+                <div class="card-center-symbol">🌸</div>
+                <h4 class="card-front-title">TOCA AQUÍ</h4>
+                <span class="card-front-hint">descubrir ✨</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="card-back-badge">02 • TRATO</span>
+                <h4 class="card-trait-name">GENTIL</h4>
+                <p class="card-trait-desc">
+                  Tienes una delicadeza y una amabilidad innata. La forma en que tratas a las personas y te preocupas por los demás te hace única.
+                </p>
+                <div class="card-back-footer">✨ corazón noble</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta 3: Empática -->
+          <div class="flip-card" data-card-id="3">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-sparkle">★</div>
+                <div class="card-number">03</div>
+                <div class="card-center-symbol">🤍</div>
+                <h4 class="card-front-title">TOCA AQUÍ</h4>
+                <span class="card-front-hint">descubrir ✨</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="card-back-badge">03 • CONEXIÓN</span>
+                <h4 class="card-trait-name">EMPÁTICA</h4>
+                <p class="card-trait-desc">
+                  Sabes escuchar de verdad. Tienes esa capacidad tan linda de ponerte en el lugar del otro y hacer que quien esté contigo se sienta comprendido.
+                </p>
+                <div class="card-back-footer">🤝 siempre ahí</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta 4: Graciosa -->
+          <div class="flip-card" data-card-id="4">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-sparkle">★</div>
+                <div class="card-number">04</div>
+                <div class="card-center-symbol">😄</div>
+                <h4 class="card-front-title">TOCA AQUÍ</h4>
+                <span class="card-front-hint">descubrir ✨</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="card-back-badge">04 • ALEGRÍA</span>
+                <h4 class="card-trait-name">GRACIOSA</h4>
+                <p class="card-trait-desc">
+                  Tus ocurrencias, tus risas y tu sentido del humor hacen que cualquier momento se vuelva ligero, divertido y memorable.
+                </p>
+                <div class="card-back-footer">⚡ risas aseguradas</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta 5: Interesante -->
+          <div class="flip-card" data-card-id="5">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-sparkle">★</div>
+                <div class="card-number">05</div>
+                <div class="card-center-symbol">🔮</div>
+                <h4 class="card-front-title">TOCA AQUÍ</h4>
+                <span class="card-front-hint">descubrir ✨</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="card-back-badge">05 • MENTE</span>
+                <h4 class="card-trait-name">INTERESANTE</h4>
+                <p class="card-trait-desc">
+                  Hablar contigo nunca aburre. Tienes una forma tan particular y profunda de ver las cosas, con ideas y gustos que dan ganas de escuchar por horas.
+                </p>
+                <div class="card-back-footer">💫 fascinante</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carta 6: Capaz -->
+          <div class="flip-card" data-card-id="6">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="card-sparkle">★</div>
+                <div class="card-number">06</div>
+                <div class="card-center-symbol">⚡</div>
+                <h4 class="card-front-title">TOCA AQUÍ</h4>
+                <span class="card-front-hint">descubrir ✨</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="card-back-badge">06 • FUERZA</span>
+                <h4 class="card-trait-name">CAPAZ</h4>
+                <p class="card-trait-desc">
+                  Cosa que te propones, cosa que sacas adelante. Tienes determinación, inteligencia y la fuerza necesaria para lograr todo lo que sueñes.
+                </p>
+                <div class="card-back-footer">👑 imparable</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="deck-unlocked-message" class="deck-unlocked-message hidden">
+          <span>🎉 ¡Descubriste todas las cartas! Anny, eres increíble tal como eres 💖⚡</span>
         </div>
       </div>
     </section>
 
-    <!-- POST-ITS Y DETALLES -->
+    <!-- POST-ITS Y RECORDATORIOS -->
     <section class="fanzine-section">
       <div class="section-title-wrap">
         <h3 class="section-title">⚡ RECORDATORIOS PARA TI</h3>
@@ -337,8 +460,8 @@
     <section class="punk-banner-section">
       <div class="punk-marquee-wrap">
         <div class="punk-marquee">
-          <span>⚡ ANNY ⚡ OJOS QUE HIPNOTIZAN ⚡ TU ESTILO ÚNICO ⚡ ESA VOZ DULCE ⚡ DIBUJANTE CON TALENTO ⚡ AMABLE, LINDA & GENTIL ⚡ SIMPLEMENTE TÚ ⚡</span>
-          <span>⚡ ANNY ⚡ OJOS QUE HIPNOTIZAN ⚡ TU ESTILO ÚNICO ⚡ ESA VOZ DULCE ⚡ DIBUJANTE CON TALENTO ⚡ AMABLE, LINDA & GENTIL ⚡ SIMPLEMENTE TÚ ⚡</span>
+          <span>⚡ ANNY ⚡ SINCERA ⚡ GENTIL ⚡ EMPÁTICA ⚡ GRACIOSA ⚡ INTERESANTE ⚡ CAPAZ ⚡ OJOS QUE HIPNOTIZAN ⚡ VOZ DULCE ⚡ SIMPLEMENTE TÚ ⚡</span>
+          <span>⚡ ANNY ⚡ SINCERA ⚡ GENTIL ⚡ EMPÁTICA ⚡ GRACIOSA ⚡ INTERESANTE ⚡ CAPAZ ⚡ OJOS QUE HIPNOTIZAN ⚡ VOZ DULCE ⚡ SIMPLEMENTE TÚ ⚡</span>
         </div>
       </div>
     </section>

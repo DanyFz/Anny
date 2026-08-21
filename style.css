@@ -306,19 +306,7 @@ html, body {
   50% { transform: scale(1.1); opacity: 0.85; }
 }
 
-.intro-status {
-  margin-top: 1.5rem;
-  font-family: var(--font-punk-marker);
-  font-size: 1.05rem;
-  letter-spacing: 2px;
-  color: var(--color-neon-pink);
-  text-shadow: 0 0 10px var(--color-neon-pink);
-}
-
-/* =========================================================
-   CAJA DE REVELACIÓN DE TÍTULO "ANNY"
-   ========================================================= */
-
+/* TÍTULO ANNY */
 .title-reveal-box {
   position: absolute;
   top: 50%;
@@ -517,7 +505,7 @@ html, body {
 }
 
 /* =========================================================
-   SECCIÓN FOTO SPOTLIGHT & SELIDER/ARTE
+   SECCIÓN FOTO SPOTLIGHT
    ========================================================= */
 
 .photo-spotlight-section {
@@ -634,7 +622,7 @@ html, body {
   display: none;
 }
 
-/* HISTORIA & SELIDER / ARTE */
+/* HISTORIA & CARTA */
 .photo-story-content {
   display: flex;
   flex-direction: column;
@@ -766,175 +754,212 @@ html, body {
 }
 
 /* =========================================================
-   ESTUDIO DE DIBUJO Y LIENZO INTERACTIVO
+   SECCIÓN DE CARTAS INTERACTIVAS (3D FLIP CARDS)
    ========================================================= */
 
-.art-studio-section {
+.reveal-cards-section {
   width: 100%;
 }
 
-.studio-card {
+.deck-main-card {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.8rem;
 }
 
-.studio-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+.deck-header {
+  text-align: center;
 }
 
-.studio-title {
+.deck-title {
   font-family: var(--font-rocker);
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--color-pure-glow);
   text-shadow: 0 0 15px var(--color-neon-pink);
 }
 
-.studio-sub {
+.deck-sub {
   color: var(--color-dusty-rose);
-  font-size: 0.95rem;
-  margin-top: 0.2rem;
+  font-size: 1rem;
+  margin-top: 0.35rem;
 }
 
-.brush-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.tool-label {
-  font-family: var(--font-punk-marker);
+.deck-progress {
+  margin-top: 0.75rem;
+  display: inline-block;
+  background: rgba(127, 0, 178, 0.3);
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  border: 1px dashed var(--color-neon-pink);
+  color: var(--color-pure-glow);
   font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.deck-progress strong {
   color: var(--color-neon-pink);
+  font-size: 1.05rem;
 }
 
-.brush-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: var(--btn-c);
-  border: 2px solid #000;
+.cards-interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.6rem;
+  perspective: 1200px;
+}
+
+.flip-card {
+  background-color: transparent;
+  height: 250px;
   cursor: pointer;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
-  transition: transform 0.2s ease;
 }
 
-.brush-btn.active {
-  transform: scale(1.25);
-  border-color: #fff;
-  box-shadow: 0 0 10px var(--btn-c);
-}
-
-.sketch-wrapper {
+.flip-card-inner {
   position: relative;
-  background: #08000d;
-  border: 2px dashed var(--color-electric-purple);
-  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: 8px;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Frente de la carta */
+.flip-card-front {
+  background: linear-gradient(145deg, #180029, #0a0012);
+  border: 2px solid var(--color-electric-purple);
+  color: var(--color-pure-glow);
+  transition: all 0.25s ease;
+  position: relative;
   overflow: hidden;
 }
 
-#sketch-canvas {
-  width: 100%;
-  height: 340px;
-  display: block;
-  cursor: crosshair;
-  background: radial-gradient(circle at center, rgba(127, 0, 178, 0.1) 0%, rgba(8, 0, 13, 0.9) 100%);
-}
-
-.sketch-hint {
+.flip-card-front::after {
+  content: '';
   position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(20, 0, 32, 0.75);
-  color: var(--color-neon-pink);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  border: 1px solid rgba(253, 202, 225, 0.3);
+  inset: 6px;
+  border: 1px dashed rgba(253, 202, 225, 0.35);
+  border-radius: 4px;
   pointer-events: none;
 }
 
-/* =========================================================
-   PALETA DE COLORES
-   ========================================================= */
-
-.palette-section {
-  width: 100%;
+.flip-card:hover .flip-card-front {
+  border-color: var(--color-neon-pink);
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(253, 202, 225, 0.4);
 }
 
-.palette-header-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.2rem;
-}
-
-.palette-title {
-  font-family: var(--font-punk-marker);
-  font-size: 1.1rem;
-  letter-spacing: 1px;
+.card-sparkle {
+  position: absolute;
+  top: 12px;
+  right: 14px;
   color: var(--color-neon-pink);
+  font-size: 1.1rem;
 }
 
-.palette-sub {
+.card-number {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-family: monospace;
   font-size: 0.85rem;
   color: var(--color-dusty-rose);
 }
 
-.palette-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+.card-center-symbol {
+  font-size: 2.8rem;
+  margin-top: 1.2rem;
+  filter: drop-shadow(0 0 10px var(--color-neon-pink));
 }
 
-.color-chip {
-  background-color: var(--chip-bg);
-  color: var(--chip-text);
-  padding: 1.1rem 0.8rem;
-  border-radius: 6px;
-  border: 2px solid #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-  text-align: center;
+.card-front-title {
+  font-family: var(--font-punk-marker);
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  color: var(--color-neon-pink);
 }
 
-.color-chip:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 5px 5px 0px var(--color-pure-glow);
-}
-
-.chip-name {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.chip-desc {
+.card-front-hint {
   font-size: 0.75rem;
-  opacity: 0.85;
-  margin: 3px 0;
+  color: var(--color-dusty-rose);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.chip-code {
+/* Reverso de la carta */
+.flip-card-back {
+  background: linear-gradient(145deg, #2b0042, #150024);
+  border: 2px solid var(--color-neon-pink);
+  color: var(--color-pure-glow);
+  transform: rotateY(180deg);
+  box-shadow: 0 0 25px rgba(253, 202, 225, 0.4);
+  text-align: left;
+}
+
+.card-back-badge {
   font-family: monospace;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
+  color: var(--color-neon-pink);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card-trait-name {
+  font-family: var(--font-glitch);
+  font-size: 2.1rem;
+  color: var(--color-pure-glow);
+  text-shadow: 0 0 12px var(--color-neon-pink);
+  letter-spacing: 2px;
+  margin: 0.2rem 0;
+}
+
+.card-trait-desc {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #f7e6ef;
+}
+
+.card-back-footer {
+  font-family: var(--font-punk-marker);
+  font-size: 0.85rem;
+  color: var(--color-neon-pink);
+  text-align: right;
+}
+
+/* Mensaje de todas las cartas descubiertas */
+.deck-unlocked-message {
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-deep-violet), var(--color-electric-purple));
+  border: 2px solid var(--color-neon-pink);
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-family: var(--font-punk-marker);
+  font-size: 1.15rem;
+  color: var(--color-pure-glow);
+  box-shadow: 0 0 25px var(--color-neon-pink);
+  animation: pulse-flash 1.5s infinite alternate;
+}
+
+.deck-unlocked-message.hidden {
+  display: none;
 }
 
 /* =========================================================
@@ -1302,8 +1327,8 @@ html, body {
     padding: 1.5rem;
   }
 
-  .palette-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .cards-interactive-grid {
+    grid-template-columns: 1fr;
   }
 
   .stickers-grid {

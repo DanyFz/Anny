@@ -1,5 +1,5 @@
 /* =========================================================
-   ANNY - MOTOR INTERACTIVO PINK PUNK & TRIBUTO A LA LÍDER Y ARTISTA
+   ANNY - MOTOR INTERACTIVO PINK PUNK & CARTAS QUE REVELAN SU ESENCIA
    Paleta: #c594aa, #fdcae1, #ffe5f0, #4c007d, #7f00b2
    ========================================================= */
 
@@ -274,7 +274,7 @@
   }
   requestAnimationFrame(animateCanvas);
 
-  // --- ORQUESTACIÓN DE LA INTRODUCCIÓN (CORAZÓN -> REVELACIÓN ANNY) ---
+  // --- ORQUESTACIÓN DE LA INTRODUCCIÓN ---
   const introOverlay = document.getElementById('intro-overlay');
   const heartWrapper = document.getElementById('heart-wrapper');
   const heartPath = document.getElementById('heart-path');
@@ -334,7 +334,7 @@
 
   window.addEventListener('DOMContentLoaded', () => {
     runIntroSequence();
-    initSketchStudio();
+    initFlipCards();
   });
 
   if (enterUniverseBtn) {
@@ -380,113 +380,49 @@
     });
   }
 
-  // --- ESTUDIO DE DIBUJO NEÓN INTERACTIVO ---
-  function initSketchStudio() {
-    const sketchCanvas = document.getElementById('sketch-canvas');
-    if (!sketchCanvas) return;
-    const sCtx = sketchCanvas.getContext('2d');
-    let isDrawing = false;
-    let currentColor = '#fdcae1';
-    let lastX = 0;
-    let lastY = 0;
+  // --- CARTAS INTERACTIVAS 3D QUE REVELAN CUALIDADES ---
+  function initFlipCards() {
+    const flipCards = document.querySelectorAll('.flip-card');
+    const revealedCountEl = document.getElementById('revealed-count');
+    const deckUnlockedMessage = document.getElementById('deck-unlocked-message');
+    const discoveredSet = new Set();
 
-    function resizeSketchCanvas() {
-      const rect = sketchCanvas.parentElement.getBoundingClientRect();
-      sketchCanvas.width = rect.width;
-      sketchCanvas.height = 340;
-    }
-    resizeSketchCanvas();
-    window.addEventListener('resize', resizeSketchCanvas);
+    flipCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const isFlipped = card.classList.toggle('is-flipped');
+        const cardId = card.getAttribute('data-card-id');
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
 
-    function getCoords(e) {
-      const rect = sketchCanvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
-      };
-    }
+        if (isFlipped) {
+          audio.playSparkle();
+          spawnBurst(cx, cy, 25);
+          discoveredSet.add(cardId);
+        } else {
+          audio.playPop();
+        }
 
-    function startDraw(e) {
-      isDrawing = true;
-      const pos = getCoords(e);
-      lastX = pos.x;
-      lastY = pos.y;
-      audio.playPop();
-    }
+        // Actualizar contador
+        if (revealedCountEl) {
+          revealedCountEl.textContent = discoveredSet.size;
+        }
 
-    function draw(e) {
-      if (!isDrawing) return;
-      e.preventDefault();
-      const pos = getCoords(e);
-
-      sCtx.strokeStyle = currentColor;
-      sCtx.shadowColor = currentColor;
-      sCtx.shadowBlur = 12;
-      sCtx.lineWidth = 4;
-      sCtx.lineCap = 'round';
-      sCtx.lineJoin = 'round';
-
-      sCtx.beginPath();
-      sCtx.moveTo(lastX, lastY);
-      sCtx.lineTo(pos.x, pos.y);
-      sCtx.stroke();
-
-      lastX = pos.x;
-      lastY = pos.y;
-
-      if (Math.random() < 0.2) {
-        particles.push(new Particle(e.clientX || (e.touches && e.touches[0].clientX), e.clientY || (e.touches && e.touches[0].clientY), 'spark'));
-      }
-    }
-
-    function stopDraw() {
-      isDrawing = false;
-    }
-
-    sketchCanvas.addEventListener('mousedown', startDraw);
-    sketchCanvas.addEventListener('mousemove', draw);
-    window.addEventListener('mouseup', stopDraw);
-
-    sketchCanvas.addEventListener('touchstart', startDraw, { passive: false });
-    sketchCanvas.addEventListener('touchmove', draw, { passive: false });
-    window.addEventListener('touchend', stopDraw);
-
-    const brushBtns = document.querySelectorAll('.brush-btn');
-    brushBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        brushBtns.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentColor = btn.getAttribute('data-color');
-        audio.playPop();
+        // Si se descubren todas las 6 cartas
+        if (discoveredSet.size === 6 && deckUnlockedMessage) {
+          setTimeout(() => {
+            deckUnlockedMessage.classList.remove('hidden');
+            audio.playPowerChord();
+            spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 80);
+          }, 400);
+        }
       });
     });
-
-    const clearBtn = document.getElementById('clear-sketch-btn');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        sCtx.clearRect(0, 0, sketchCanvas.width, sketchCanvas.height);
-        audio.playSparkle();
-      });
-    }
-
-    const saveBtn = document.getElementById('save-sketch-btn');
-    if (saveBtn) {
-      saveBtn.addEventListener('click', () => {
-        const link = document.createElement('a');
-        link.download = 'arte-para-anny.png';
-        link.href = sketchCanvas.toDataURL();
-        link.click();
-        audio.playPowerChord();
-        spawnBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
-      });
-    }
   }
 
   // --- INTERACCIÓN GLOBAL CON CLICK (PARTÍCULAS & GRAFFITI) ---
   window.addEventListener('pointerdown', (e) => {
-    if (['BUTTON', 'INPUT', 'LABEL', 'A', 'CANVAS'].includes(e.target.tagName)) return;
+    if (['BUTTON', 'INPUT', 'LABEL', 'A', '.flip-card'].some(sel => e.target.closest(sel))) return;
     spawnBurst(e.clientX, e.clientY, 20);
     audio.playPop();
   });
@@ -547,7 +483,7 @@
           audio.playHeartbeat();
         }, 800);
       } else {
-        cassetteBtn.textContent = '▶ ACTIVAR RITMO';
+        cassetteBtn.textContent = '▶ PONER RITMO';
         cassetteStatus.textContent = 'EN PAUSA';
         cassetteStatus.style.color = '#c594aa';
         wheels.forEach((w) => w.classList.remove('spinning'));
