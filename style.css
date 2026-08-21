@@ -1,0 +1,1091 @@
+/* =========================================================
+   PALETA DE COLORES PUNK ROSA - ANNY
+   #c594aa | #fdcae1 | #ffe5f0 | #4c007d | #7f00b2
+   ========================================================= */
+
+:root {
+  --color-dusty-rose: #c594aa;
+  --color-neon-pink: #fdcae1;
+  --color-pure-glow: #ffe5f0;
+  --color-deep-violet: #4c007d;
+  --color-electric-purple: #7f00b2;
+
+  /* Fondos oscuros de alto contraste punk */
+  --bg-dark-core: #09000f;
+  --bg-dark-surface: #140020;
+  --bg-card: rgba(20, 0, 32, 0.88);
+  --border-neon: #fdcae1;
+
+  /* Tipografías */
+  --font-glitch: 'Rubik Glitch', monospace, sans-serif;
+  --font-punk-marker: 'Permanent Marker', cursive, sans-serif;
+  --font-rocker: 'New Rocker', cursive, sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+
+  /* Resplandores Neón */
+  --glow-pink: 0 0 10px #fdcae1, 0 0 25px #fdcae1, 0 0 50px #7f00b2;
+  --glow-purple: 0 0 10px #7f00b2, 0 0 30px #4c007d, 0 0 60px #7f00b2;
+  --glow-text-pink: 0 0 8px #ffe5f0, 0 0 20px #fdcae1, 0 0 40px #7f00b2;
+  --glow-heart: 0 0 15px rgba(253, 202, 225, 0.8), 0 0 35px rgba(127, 0, 178, 0.7), 0 0 70px rgba(76, 0, 125, 0.6);
+}
+
+/* =========================================================
+   RESETEO Y BASE
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark-core);
+  color: var(--color-pure-glow);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(127, 0, 178, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(76, 0, 125, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(253, 202, 225, 0.08) 0%, transparent 60%),
+    linear-gradient(to right, rgba(253, 202, 225, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(127, 0, 178, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Scanlines y Textura Punk */
+.punk-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.35) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.6;
+}
+
+.punk-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 98;
+  background: radial-gradient(circle, transparent 60%, rgba(9, 0, 15, 0.95) 100%);
+}
+
+.punk-noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 97;
+  opacity: 0.04;
+  background-image: repeating-radial-gradient(#fdcae1 0 0.0001%, #000 0 0.0002%);
+}
+
+/* Canvas de Partículas en el Fondo */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================================================
+   BARRA DE NAVEGACIÓN Y CONTROLES SUPERIORES
+   ========================================================= */
+
+.punk-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  z-index: 100;
+  background: rgba(13, 0, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--color-electric-purple);
+  box-shadow: 0 4px 20px rgba(127, 0, 178, 0.3);
+}
+
+.punk-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-deep-violet), var(--color-electric-purple));
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-neon-pink);
+  transform: rotate(-1.5deg);
+  box-shadow: 2px 2px 0px var(--color-neon-pink);
+}
+
+.punk-brand-badge .lightning {
+  font-size: 1.2rem;
+  animation: pulse-flash 1.5s infinite alternate;
+}
+
+.punk-brand-badge .badge-text {
+  font-family: var(--font-punk-marker);
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  color: var(--color-pure-glow);
+  text-shadow: 0 0 8px var(--color-neon-pink);
+}
+
+.nav-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.punk-mini-btn {
+  background: var(--bg-dark-surface);
+  color: var(--color-neon-pink);
+  border: 1.5px solid var(--color-dusty-rose);
+  padding: 0.4rem 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 2px 2px 0px var(--color-electric-purple);
+}
+
+.punk-mini-btn:hover {
+  background: var(--color-electric-purple);
+  color: var(--color-pure-glow);
+  border-color: var(--color-pure-glow);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 12px var(--color-neon-pink);
+}
+
+.punk-mini-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* =========================================================
+   INTRO SPLASH OVERLAY: CORAZÓN -> PULSO -> REVELACIÓN ANNY
+   ========================================================= */
+
+.intro-container {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: radial-gradient(circle at center, #1b002c 0%, #08000d 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.8s ease;
+}
+
+.intro-container.hidden-intro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-content {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Contenedor del Corazón SVG */
+.heart-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.heart-wrapper.heart-exploding {
+  transform: scale(1.4);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.heart-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 2px solid var(--color-neon-pink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.heart-shockwave.active {
+  animation: shockwave-expand 1.4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+.shockwave-2.active {
+  animation-delay: 0.5s;
+  border-color: var(--color-electric-purple);
+}
+
+@keyframes shockwave-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
+  }
+}
+
+.punk-heart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 15px rgba(253, 202, 225, 0.6));
+}
+
+.heart-bg-pulse {
+  transform-origin: center;
+  animation: heart-beat 1.6s ease-in-out infinite;
+}
+
+/* Animación de trazado del corazón con stroke-dashoffset */
+.heart-draw-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-heart-stroke 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes draw-heart-stroke {
+  0% {
+    stroke-dashoffset: 400;
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes heart-beat {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+.intro-status {
+  margin-top: 1.5rem;
+  font-family: var(--font-punk-marker);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--color-neon-pink);
+  text-shadow: 0 0 8px var(--color-neon-pink);
+}
+
+/* =========================================================
+   CAJA DE REVELACIÓN DE TÍTULO "ANNY"
+   ========================================================= */
+
+.title-reveal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  max-width: 650px;
+}
+
+.title-reveal-box.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.title-reveal-box.hidden {
+  display: none;
+}
+
+/* Cinta de cinta adhesiva punk */
+.tape-strip {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+  font-family: var(--font-punk-marker);
+  font-size: 0.9rem;
+  font-weight: 900;
+  padding: 0.3rem 1.4rem;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
+  letter-spacing: 2px;
+  margin-bottom: -10px;
+  z-index: 2;
+}
+
+.tape-strip.pink-tape {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+}
+
+.tape-strip.purple-tape {
+  background: var(--color-electric-purple);
+  color: var(--color-pure-glow);
+}
+
+/* TÍTULO PRINCIPAL: ANNY */
+.anny-title {
+  font-family: var(--font-glitch);
+  font-size: clamp(4.5rem, 15vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: 6px;
+  color: var(--color-pure-glow);
+  text-transform: uppercase;
+  text-shadow: 
+    3px 3px 0px var(--color-electric-purple),
+    -3px -3px 0px var(--color-neon-pink),
+    0 0 30px var(--color-neon-pink),
+    0 0 60px var(--color-electric-purple);
+  margin: 0.5rem 0;
+  position: relative;
+  animation: glitch-skew 3s infinite ease-in-out alternate;
+}
+
+.anny-title::before,
+.anny-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 0, 0, 0);
+}
+
+.anny-title::before {
+  left: -3px;
+  text-shadow: -2px 0 #fdcae1;
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.anny-title::after {
+  left: 3px;
+  text-shadow: 2px 0 #7f00b2;
+  animation: glitch-anim-2 3.2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-2deg); }
+  22% { transform: skew(3deg); }
+  24% { transform: skew(0deg); }
+  75% { transform: skew(1.5deg); }
+  77% { transform: skew(-2deg); }
+  80% { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(20px, 9999px, 45px, 0); }
+  25% { clip: rect(60px, 9999px, 85px, 0); }
+  50% { clip: rect(10px, 9999px, 30px, 0); }
+  75% { clip: rect(70px, 9999px, 110px, 0); }
+  100% { clip: rect(40px, 9999px, 60px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(50px, 9999px, 80px, 0); }
+  25% { clip: rect(15px, 9999px, 40px, 0); }
+  50% { clip: rect(80px, 9999px, 120px, 0); }
+  75% { clip: rect(25px, 9999px, 50px, 0); }
+  100% { clip: rect(70px, 9999px, 95px, 0); }
+}
+
+.subtitle-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.sub-badge {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--color-neon-pink);
+  text-shadow: 0 0 10px rgba(253, 202, 225, 0.8);
+}
+
+.dot-sep {
+  color: var(--color-electric-purple);
+  font-size: 1.2rem;
+}
+
+.punk-action-btn {
+  background: linear-gradient(135deg, var(--color-electric-purple), var(--color-deep-violet));
+  color: var(--color-pure-glow);
+  border: 2px solid var(--color-neon-pink);
+  padding: 1rem 2rem;
+  font-family: var(--font-punk-marker);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px var(--color-neon-pink), 0 0 25px rgba(127, 0, 178, 0.6);
+  transform: rotate(-1deg);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.punk-action-btn:hover {
+  transform: translateY(-4px) scale(1.05) rotate(1deg);
+  background: linear-gradient(135deg, var(--color-neon-pink), var(--color-electric-purple));
+  color: var(--color-deep-violet);
+  box-shadow: 6px 6px 0px var(--color-pure-glow), 0 0 35px var(--color-neon-pink);
+}
+
+/* =========================================================
+   CONTENIDO PRINCIPAL (MAIN CONTENT)
+   ========================================================= */
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 85px 1.5rem 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* HERO SECTION */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.punk-card {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 2px solid var(--color-electric-purple);
+  border-radius: 8px;
+  padding: 2.2rem;
+  box-shadow: 6px 6px 0px rgba(127, 0, 178, 0.4), 0 0 30px rgba(76, 0, 125, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.punk-card:hover {
+  border-color: var(--color-neon-pink);
+  box-shadow: 8px 8px 0px var(--color-neon-pink), 0 0 40px rgba(253, 202, 225, 0.3);
+}
+
+.hero-card {
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.card-pin {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+}
+
+.tape-corner {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 70px;
+  height: 25px;
+  background: var(--color-dusty-rose);
+  opacity: 0.85;
+  transform: rotate(42deg);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.tag-pill {
+  font-family: var(--font-punk-marker);
+  font-size: 0.85rem;
+  color: var(--color-neon-pink);
+  background: rgba(76, 0, 125, 0.6);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  border: 1px dashed var(--color-neon-pink);
+}
+
+.status-live {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-pure-glow);
+  background: var(--color-electric-purple);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-family: var(--font-rocker);
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--color-pure-glow);
+}
+
+.highlight-pink {
+  font-family: var(--font-glitch);
+  color: var(--color-neon-pink);
+  text-shadow: var(--glow-pink);
+  letter-spacing: 4px;
+  display: inline-block;
+  transform: scale(1.05);
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #ebd3df;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+}
+
+/* PALETA PUNK INTERACTIVA */
+.palette-container {
+  background: rgba(9, 0, 15, 0.85);
+  border: 1.5px solid var(--color-dusty-rose);
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.palette-title {
+  font-family: var(--font-punk-marker);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: var(--color-neon-pink);
+  margin-bottom: 0.85rem;
+  text-align: left;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.color-chip {
+  background-color: var(--chip-bg);
+  color: var(--chip-text);
+  padding: 0.75rem 0.5rem;
+  border-radius: 4px;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.color-chip:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 4px 4px 0px var(--color-pure-glow);
+}
+
+.chip-name {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chip-code {
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* BOTONES DE ACCIÓN PRINCIPALES */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.punk-btn {
+  font-family: var(--font-punk-marker);
+  font-size: 1rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9);
+}
+
+.punk-btn.primary {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+  border: 2px solid var(--color-pure-glow);
+}
+
+.punk-btn.primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 5px 5px 0px var(--color-pure-glow), 0 0 25px var(--color-neon-pink);
+}
+
+.punk-btn.secondary {
+  background: var(--color-deep-violet);
+  color: var(--color-pure-glow);
+  border: 2px solid var(--color-electric-purple);
+}
+
+.punk-btn.secondary:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: var(--color-neon-pink);
+  box-shadow: 5px 5px 0px var(--color-electric-purple), 0 0 25px var(--color-electric-purple);
+}
+
+/* =========================================================
+   SECCIÓN FANZINE & STICKERS
+   ========================================================= */
+
+.fanzine-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-title-wrap {
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-rocker);
+  font-size: 2.2rem;
+  color: var(--color-pure-glow);
+  text-shadow: 2px 2px 0px var(--color-electric-purple), 0 0 20px var(--color-neon-pink);
+  letter-spacing: 2px;
+}
+
+.section-sub {
+  color: var(--color-dusty-rose);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.stickers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  align-items: stretch;
+}
+
+.sticker-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.8rem;
+  min-height: 220px;
+  cursor: pointer;
+}
+
+.sticker-card.tilt-left {
+  transform: rotate(-1.5deg);
+}
+
+.sticker-card.tilt-right {
+  transform: rotate(2deg);
+}
+
+.sticker-card:hover {
+  transform: rotate(0deg) scale(1.04) translateY(-5px);
+  z-index: 5;
+}
+
+.mini-tape {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.8rem;
+}
+
+.sticker-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-family: var(--font-punk-marker);
+  font-size: 0.8rem;
+  color: var(--color-neon-pink);
+  background: var(--color-deep-violet);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-electric-purple);
+  border-radius: 4px;
+}
+
+.card-title {
+  font-family: var(--font-punk-marker);
+  font-size: 1.3rem;
+  color: var(--color-neon-pink);
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+
+.sticker-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 10px var(--color-neon-pink));
+}
+
+.interactive-hint {
+  margin-top: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-neon-pink);
+  background: rgba(127, 0, 178, 0.3);
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  border: 1px dashed var(--color-neon-pink);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(197, 148, 170, 0.4);
+}
+
+.punk-hashtag {
+  font-family: var(--font-punk-marker);
+  font-size: 0.9rem;
+  color: var(--color-dusty-rose);
+}
+
+.like-heart-btn {
+  background: transparent;
+  border: 1px solid var(--color-electric-purple);
+  color: var(--color-pure-glow);
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.like-heart-btn:hover {
+  background: var(--color-electric-purple);
+  border-color: var(--color-neon-pink);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--color-neon-pink);
+}
+
+/* CASSETTE TAPE STYLING */
+.cassette-body {
+  background: #1e0030;
+  border: 2px solid var(--color-dusty-rose);
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin: 0.8rem 0;
+}
+
+.cassette-label {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+  font-family: var(--font-punk-marker);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.cassette-wheels {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #09000f;
+  padding: 0.4rem;
+  border-radius: 4px;
+}
+
+.wheel {
+  width: 26px;
+  height: 26px;
+  border: 3px dashed var(--color-neon-pink);
+  border-radius: 50%;
+  background: var(--color-deep-violet);
+}
+
+.wheel.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.wheel-tape {
+  width: 60px;
+  height: 8px;
+  background: #45213b;
+  border-radius: 4px;
+}
+
+.cassette-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cassette-btn {
+  background: var(--color-electric-purple);
+  color: var(--color-pure-glow);
+  border: 1px solid var(--color-neon-pink);
+  padding: 0.35rem 0.8rem;
+  border-radius: 4px;
+  font-family: var(--font-punk-marker);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.cassette-btn:hover {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+}
+
+#cassette-status {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--color-dusty-rose);
+}
+
+/* CARD DE AGREGAR NOTA */
+.add-note-card {
+  border-style: dashed;
+  border-color: var(--color-neon-pink);
+}
+
+.note-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.note-input-group input {
+  background: rgba(9, 0, 15, 0.9);
+  border: 1.5px solid var(--color-electric-purple);
+  color: var(--color-pure-glow);
+  padding: 0.65rem 0.85rem;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.note-input-group input:focus {
+  border-color: var(--color-neon-pink);
+  box-shadow: 0 0 10px rgba(253, 202, 225, 0.4);
+}
+
+.punk-mini-btn.highlight {
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+  border-color: var(--color-pure-glow);
+}
+
+.punk-mini-btn.highlight:hover {
+  background: var(--color-pure-glow);
+  box-shadow: 0 0 15px var(--color-neon-pink);
+}
+
+.dynamic-stickers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* =========================================================
+   PUNK MARQUEE BANNER
+   ========================================================= */
+
+.punk-banner-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  background: var(--color-neon-pink);
+  color: var(--color-deep-violet);
+  padding: 0.75rem 0;
+  transform: rotate(-1.5deg) scale(1.02);
+  box-shadow: 0 0 25px rgba(253, 202, 225, 0.4);
+}
+
+.punk-marquee-wrap {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.punk-marquee {
+  display: flex;
+  flex-shrink: 0;
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.punk-marquee span {
+  font-family: var(--font-punk-marker);
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  padding: 0 1.5rem;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* =========================================================
+   CURSOR PERSONALIZADO PUNK
+   ========================================================= */
+
+.punk-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  font-size: 1.5rem;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 8px var(--color-neon-pink));
+  transition: transform 0.08s ease-out;
+  display: none;
+}
+
+.punk-cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 8px;
+  height: 8px;
+  background: var(--color-neon-pink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--color-neon-pink);
+  display: none;
+}
+
+@media (pointer: fine) {
+  .punk-cursor,
+  .punk-cursor-dot {
+    display: block;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .punk-nav {
+    padding: 0 1rem;
+    height: 58px;
+  }
+  
+  .badge-text {
+    display: none;
+  }
+
+  .main-content {
+    padding-top: 75px;
+    gap: 2.5rem;
+  }
+
+  .punk-card {
+    padding: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .palette-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stickers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animaciones Generales */
+@keyframes pulse-flash {
+  0% { opacity: 0.7; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.15); }
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANNY ⚡ LA FUERZA Y LA DULZURA</title>
+  <meta name="description" content="Página dedicada a Anny: una líder brillante, auténtica, amable, gentil y con un corazón indestructible.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=New+Rocker&family=Permanent+Marker&family=Rubik+Glitch&family=Space+Grotesk:wght@400;600;700;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="punk-body">
+  <!-- Efectos de Fondo -->
+  <div class="punk-scanlines" aria-hidden="true"></div>
+  <div class="punk-vignette" aria-hidden="true"></div>
+  <div class="punk-noise-overlay" aria-hidden="true"></div>
+
+  <!-- Canvas Interactivo de Partículas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Barra Superior -->
+  <header class="punk-nav">
+    <div class="punk-brand-badge">
+      <span class="lightning">⚡</span>
+      <span class="badge-text">ANNY / LÍDER & INSPIRACIÓN</span>
+    </div>
+    <div class="nav-controls">
+      <button id="sound-toggle-btn" class="punk-mini-btn" title="Activar/Desactivar Sonido">
+        <span id="sound-icon">🔊</span>
+        <span id="sound-label">FX: ON</span>
+      </button>
+      <button id="replay-btn" class="punk-mini-btn" title="Repetir Animación">
+        <span>🔄</span> REPETIR INTRO
+      </button>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       SECCIÓN INTRO: CORAZÓN ULTRA PUNK -> TÍTULO ANNY
+       ============================================== -->
+  <div id="intro-overlay" class="intro-container">
+    <div class="intro-content">
+      
+      <!-- Contenedor del Corazón Punk con Espinas, Púas y Rayos -->
+      <div id="heart-wrapper" class="heart-wrapper">
+        <div class="heart-shockwave shockwave-1"></div>
+        <div class="heart-shockwave shockwave-2"></div>
+        
+        <svg class="punk-heart-svg ultra-punk" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="neon-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur1" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur3" />
+              <feMerge>
+                <feMergeNode in="blur3" />
+                <feMergeNode in="blur2" />
+                <feMergeNode in="blur1" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            
+            <linearGradient id="punkHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fdcae1" />
+              <stop offset="45%" stop-color="#7f00b2" />
+              <stop offset="100%" stop-color="#4c007d" />
+            </linearGradient>
+
+            <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ffe5f0" />
+              <stop offset="100%" stop-color="#fdcae1" />
+            </linearGradient>
+
+            <linearGradient id="spikesGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fdcae1" />
+              <stop offset="100%" stop-color="#7f00b2" />
+            </linearGradient>
+          </defs>
+
+          <!-- Espinas y Púas Exteriores Punk -->
+          <g class="heart-spikes" filter="url(#neon-glow)" stroke="url(#spikesGrad)" stroke-width="2.5" fill="none" stroke-linecap="round">
+            <!-- Púas superiores e izquierdas -->
+            <path d="M 60,32 L 60,10" />
+            <path d="M 45,22 L 35,6" />
+            <path d="M 28,26 L 12,14" />
+            <path d="M 18,40 L 2,34" />
+            <path d="M 15,58 L -2,60" />
+            <path d="M 24,78 L 8,88" />
+            <path d="M 42,95 L 30,110" />
+
+            <!-- Púas derechas -->
+            <path d="M 75,22 L 85,6" />
+            <path d="M 92,26 L 108,14" />
+            <path d="M 102,40 L 118,34" />
+            <path d="M 105,58 L 122,60" />
+            <path d="M 96,78 L 112,88" />
+            <path d="M 78,95 L 90,110" />
+
+            <!-- Punta inferior -->
+            <path d="M 60,104 L 60,118" stroke-width="3.5" />
+          </g>
+
+          <!-- Silueta de Fondo con Pulso Neón -->
+          <path class="heart-bg-pulse" d="M 60,34 C 60,34 42,12 21,26 C 3,39 6,65 60,104 C 114,65 117,39 99,26 C 78,12 60,34 60,34 Z" fill="url(#punkHeartGrad)" opacity="0.45" filter="url(#neon-glow)" />
+
+          <!-- Trazado Neón Principal del Corazón -->
+          <path id="heart-path" class="heart-draw-path" d="M 60,34 C 60,34 42,12 21,26 C 3,39 6,65 60,104 C 114,65 117,39 99,26 C 78,12 60,34 60,34 Z" fill="none" stroke="url(#laserGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon-glow)" />
+          
+          <!-- Alambre de Púas / Barbed Wire Cruzado -->
+          <g class="barbed-wire" stroke="#fdcae1" stroke-width="2" fill="none" filter="url(#neon-glow)">
+            <path d="M 18,52 Q 60,40 102,52" stroke-dasharray="8,4" />
+            <!-- Nudos de púas -->
+            <circle cx="38" cy="47" r="2.5" fill="#ffe5f0" />
+            <path d="M 34,43 L 42,51 M 34,51 L 42,43" stroke="#ffe5f0" stroke-width="1.8" />
+            <circle cx="82" cy="47" r="2.5" fill="#ffe5f0" />
+            <path d="M 78,43 L 86,51 M 78,51 L 86,43" stroke="#ffe5f0" stroke-width="1.8" />
+          </g>
+
+          <!-- Rayo Central Punk -->
+          <path class="heart-lightning" d="M 62,28 L 54,52 L 66,54 L 56,82" stroke="#ffe5f0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#neon-glow)" />
+        </svg>
+
+        <!-- Etiqueta de Estado de Carga -->
+        <div id="intro-status-text" class="intro-status">
+          <span class="glitch-text" data-text="ENCENDIENDO CORAZÓN...">ENCENDIENDO CORAZÓN...</span>
+        </div>
+      </div>
+
+      <!-- TÍTULO REVELADO: ANNY -->
+      <div id="title-reveal-box" class="title-reveal-box hidden">
+        <div class="tape-strip top-tape">★ INSPIRADORA • GENTIL • LÍDER ★</div>
+        <h1 class="anny-title glitch-heading" data-text="ANNY">
+          ANNY
+        </h1>
+        <div class="subtitle-tag">
+          <span class="sub-badge">FUERZA & DULZURA</span>
+          <span class="dot-sep">•</span>
+          <span class="sub-badge">UN CORAZÓN QUE BRILLA</span>
+        </div>
+        <button id="enter-universe-btn" class="punk-action-btn">
+          <span>DESCUBRIR EL MUNDO DE ANNY</span> ⚡
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==============================================
+       CONTENIDO PRINCIPAL (EL MUNDO DE ANNY)
+       ============================================== -->
+  <main id="main-content" class="main-content">
+    
+    <!-- FOTO DESTACADA Y TRIBUTO DE LIDERAZGO -->
+    <section id="photo-spotlight-section" class="photo-spotlight-section">
+      <div class="punk-card photo-card-wrap">
+        <div class="tape-strip mini-tape pink-tape">AUTÉNTICA & RADIANTE</div>
+        <div class="card-pin">📌</div>
+        
+        <div class="photo-card-inner">
+          <!-- Marco de Foto Estilo Polaroid Punk -->
+          <div class="polaroid-frame" id="polaroid-frame">
+            <div class="polaroid-image-holder">
+              <img id="anny-main-photo" src="anny.jpg" alt="Foto de Anny" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22450%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234c007d%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%237f00b2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23fdcae1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22190%22%20r%3D%2275%22%20fill%3D%22%23ffe5f0%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M%20200%2C130%20L%20208%2C160%20L%20240%2C160%20L%20215%2C180%20L%20225%2C210%20L%20200%2C190%20L%20175%2C210%20L%20185%2C180%20L%20160%2C160%20L%20192%2C160%20Z%22%20fill%3D%22%237f00b2%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%22310%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3EANNY%3C%2Ftext%3E%3Ctext%20x%3D%2250%25%22%20y%3D%22340%22%20font-family%3D%22sans-serif%22%20font-size%3D%2214%22%20fill%3D%22%23ffe5f0%22%20text-anchor%3D%22middle%22%3EClic%20abajo%20para%20cargar%20foto%3C%2Ftext%3E%3C%2Fsvg%3E';">
+              <div class="photo-badge-overlay">★ LA REINA ★</div>
+            </div>
+            
+            <div class="polaroid-caption">
+              <span class="caption-name">ANNY</span>
+              <span class="caption-sub">"Líder, bondadosa & auténtica"</span>
+            </div>
+
+            <!-- Botón para subir o cambiar foto fácilmente -->
+            <div class="photo-upload-bar">
+              <label for="photo-file-input" class="photo-upload-label">
+                📷 <span>Cargar / Cambiar Foto de Anny</span>
+              </label>
+              <input type="file" id="photo-file-input" accept="image/*">
+            </div>
+          </div>
+
+          <!-- Mensaje Principal y Atributos -->
+          <div class="photo-story-content">
+            <div class="story-tag">👑 ESENCIA PURA & DETERMINACIÓN</div>
+            <h2 class="story-title">
+              UNA LÍDER QUE <span class="highlight-pink">ILUMINA</span> CADA ESPACIO
+            </h2>
+            <p class="story-desc">
+              Hay personas que guían con fuerza, y otras que inspiran con calidez. Anny tiene ese don único de unir ambos mundos: una <strong>líder innata</strong> con visión, empuje y determinación, guiada siempre por un <strong>corazón noble, gentil y profundamente amable</strong>.
+            </p>
+
+            <!-- Grid de Cualidades -->
+            <div class="qualities-grid">
+              <div class="quality-item">
+                <span class="q-icon">👑</span>
+                <div>
+                  <strong>Liderazgo Natural</strong>
+                  <p>Inspira, guía y transforma desafíos en metas superadas.</p>
+                </div>
+              </div>
+
+              <div class="quality-item">
+                <span class="q-icon">💖</span>
+                <div>
+                  <strong>Bondad & Gentileza</strong>
+                  <p>Tiene una calidez que abraza y hace sentir bien a todos.</p>
+                </div>
+              </div>
+
+              <div class="quality-item">
+                <span class="q-icon">✨</span>
+                <div>
+                  <strong>Linda por Dentro y por Fuera</strong>
+                  <p>Su autenticidad y alegría contagian luz inagotable.</p>
+                </div>
+              </div>
+
+              <div class="quality-item">
+                <span class="q-icon">⚡</span>
+                <div>
+                  <strong>Espíritu Imparable</strong>
+                  <p>Firme en sus convicciones, valiente y leal a lo que ama.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <button id="blast-hearts-btn" class="punk-btn primary">
+                💖 LLUVIA DE CORAZONES
+              </button>
+              <button id="guitar-riff-btn" class="punk-btn secondary">
+                🎸 ACORDE DE PODER
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PALETA DE COLORES PERSONALIZADA -->
+    <section class="palette-section">
+      <div class="punk-card">
+        <div class="palette-header-wrap">
+          <h3 class="palette-title">🎨 PALETA NEÓN: LA ARMONÍA DE ANNY</h3>
+          <span class="palette-sub">Toca cualquier tono para copiar su código hexadecimal</span>
+        </div>
+        <div class="palette-grid">
+          <div class="color-chip" style="--chip-bg: #fdcae1; --chip-text: #4c007d;" data-hex="#FDCAE1">
+            <span class="chip-name">Rosa Neón</span>
+            <span class="chip-desc">Dulzura & Chispa</span>
+            <span class="chip-code">#fdcae1</span>
+          </div>
+          <div class="color-chip" style="--chip-bg: #ffe5f0; --chip-text: #4c007d;" data-hex="#FFE5F0">
+            <span class="chip-name">Luz Pura</span>
+            <span class="chip-desc">Gentileza & Calidez</span>
+            <span class="chip-code">#ffe5f0</span>
+          </div>
+          <div class="color-chip" style="--chip-bg: #c594aa; --chip-text: #140020;" data-hex="#C594AA">
+            <span class="chip-name">Rosa Ceniza</span>
+            <span class="chip-desc">Elegancia & Serenidad</span>
+            <span class="chip-code">#c594aa</span>
+          </div>
+          <div class="color-chip" style="--chip-bg: #7f00b2; --chip-text: #ffe5f0;" data-hex="#7F00B2">
+            <span class="chip-name">Púrpura Eléctrico</span>
+            <span class="chip-desc">Liderazgo & Fuerza</span>
+            <span class="chip-code">#7f00b2</span>
+          </div>
+          <div class="color-chip" style="--chip-bg: #4c007d; --chip-text: #ffe5f0;" data-hex="#4C007D">
+            <span class="chip-name">Violeta Profundo</span>
+            <span class="chip-desc">Carácter & Sabiduría</span>
+            <span class="chip-code">#4c007d</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FANZINE DE MENSAJES Y NOTAS DEDICADAS -->
+    <section class="fanzine-section">
+      <div class="section-title-wrap">
+        <h3 class="section-title">⚡ CARTAS & RECORDATORIOS PARA ANNY</h3>
+        <p class="section-sub">Pequeños homenajes a su forma única de ser</p>
+      </div>
+
+      <div class="stickers-grid">
+        <!-- Carta 1 -->
+        <div class="punk-card sticker-card tilt-left" data-sound="crunch">
+          <div class="tape-strip mini-tape">EL DON DE GUIAR</div>
+          <div class="sticker-badge">👑 LÍDER</div>
+          <h4 class="card-title">INSPIRAS CON EL EJEMPLO</h4>
+          <p>Tu capacidad de escuchar, tomar decisiones con seguridad y apoyar a quienes te rodean hace que cualquier meta se sienta posible.</p>
+          <div class="card-footer">
+            <span class="punk-hashtag">#LiderazgoHumano</span>
+            <button class="like-heart-btn" title="Dar amor">💖 <span class="like-count">1998</span></button>
+          </div>
+        </div>
+
+        <!-- Carta 2 -->
+        <div class="punk-card sticker-card tilt-right" data-sound="sparkle">
+          <div class="tape-strip mini-tape pink-tape">GENTIL & HERMOSA</div>
+          <div class="sticker-badge">✨ BRILLANTE</div>
+          <h4 class="card-title">CORAZÓN DE ORO</h4>
+          <p>Tu empatía y amabilidad no tienen comparación. Siempre tienes las palabras justas y una sonrisa que alegra cualquier momento.</p>
+          <div class="card-footer">
+            <span class="punk-hashtag">#LuzPropia</span>
+            <button class="like-heart-btn" title="Dar amor">💖 <span class="like-count">2026</span></button>
+          </div>
+        </div>
+
+        <!-- Carta 3: Reproductor de Cassette -->
+        <div class="punk-card sticker-card tilt-left cassette-card" data-sound="pop">
+          <div class="tape-strip mini-tape purple-tape">MELODÍA</div>
+          <div class="cassette-body">
+            <div class="cassette-label">
+              <span>EL RITMO IMPARABLE DE ANNY</span>
+            </div>
+            <div class="cassette-wheels">
+              <div class="wheel wheel-1"></div>
+              <div class="wheel-tape"></div>
+              <div class="wheel wheel-2"></div>
+            </div>
+          </div>
+          <div class="cassette-controls">
+            <button id="cassette-play-btn" class="cassette-btn">▶ ACTIVAR RITMO</button>
+            <span id="cassette-status">EN PAUSA</span>
+          </div>
+        </div>
+
+        <!-- Carta 4: Generador de Nuevas Notas -->
+        <div class="punk-card sticker-card add-note-card">
+          <div class="tape-strip mini-tape">NUEVA DEDICATORIA</div>
+          <h4 class="card-title">ESCRIBE UN MENSAJE</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Deja una frase especial para recordarle lo grandiosa que es:</p>
+          <div class="note-input-group">
+            <input type="text" id="custom-note-input" placeholder="Ej: ¡Tu liderazgo y bondad nos inspiran!" maxlength="75">
+            <button id="add-note-btn" class="punk-mini-btn highlight">PEGAR NOTA 📌</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de notas agregadas -->
+      <div id="dynamic-stickers-container" class="dynamic-stickers-grid"></div>
+    </section>
+
+    <!-- MARQUEE INSPIRADOR -->
+    <section class="punk-banner-section">
+      <div class="punk-marquee-wrap">
+        <div class="punk-marquee">
+          <span>⚡ ANNY ⚡ LÍDER INSPIRADORA ⚡ CORAZÓN GENTIL & BRILLANTE ⚡ AUTÉNTICA ⚡ AMABLE ⚡ FUERZA INDOMABLE ⚡ PURA LUZ ⚡</span>
+          <span>⚡ ANNY ⚡ LÍDER INSPIRADORA ⚡ CORAZÓN GENTIL & BRILLANTE ⚡ AUTÉNTICA ⚡ AMABLE ⚡ FUERZA INDOMABLE ⚡ PURA LUZ ⚡</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cursor Personalizado -->
+  <div id="punk-cursor" class="punk-cursor">⚡</div>
+  <div id="punk-cursor-dot" class="punk-cursor-dot"></div>
+
+  <!-- Lógica y Audio -->
+  <script src="app.js"></script>
+</body>
+</html>
