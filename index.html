@@ -29,6 +29,9 @@
       <span class="badge-text">EL MUNDO DE ANNY</span>
     </div>
     <div class="nav-controls">
+      <button id="nav-arcade-btn" class="punk-mini-btn highlight" title="Jugar Arcade de Anny">
+        🕹️ ARCADE
+      </button>
       <button id="sound-toggle-btn" class="punk-mini-btn" title="Activar/Desactivar Sonido">
         <span id="sound-label">FX: ON</span>
       </button>
@@ -204,8 +207,8 @@
               <div class="quality-item">
                 <span class="q-num">III</span>
                 <div>
-                  <strong>Tu estilo</strong>
-                  <p>Llamativo y con onda única.</p>
+                  <strong>Tu personalidad</strong>
+                  <p>Llamativa, graciosa y única.</p>
                 </div>
               </div>
 
@@ -213,7 +216,7 @@
                 <span class="q-num">IV</span>
                 <div>
                   <strong>Tu corazón</strong>
-                  <p>Amable, atenta y noble.</p>
+                  <p>Sincera, empática y atenta.</p>
                 </div>
               </div>
             </div>
@@ -400,6 +403,113 @@
 
         <div id="deck-unlocked-message" class="deck-unlocked-message hidden">
           <span>Has revelado todas las cartas de Anny.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECCIÓN ARCADE: MULTIJUEGO DE ANNY (SNAKE & CATCHER)
+         ============================================== -->
+    <section id="arcade-section" class="arcade-section">
+      <div class="punk-card arcade-main-card">
+        <div class="tape-strip mini-tape pink-tape">ARCADE RETRO DE ANNY</div>
+        
+        <div class="arcade-header">
+          <div class="arcade-badge-tag">RETRO GAMING ZONE</div>
+          <h3 class="arcade-title">ARCADE DE ANNY</h3>
+          <p class="arcade-sub">¡Elige tu minijuego favorito y juega con la caricatura de Anny en celular o PC!</p>
+          
+          <!-- Selector de Juegos -->
+          <div class="arcade-game-tabs">
+            <button id="tab-snake-btn" class="arcade-tab active" data-game="snake">
+              <span>🐍 CYBER SNAKE</span>
+            </button>
+            <button id="tab-catcher-btn" class="arcade-tab" data-game="catcher">
+              <span>💖 HEART CATCHER</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="arcade-cabinet-container">
+          <div class="arcade-cabinet-frame">
+            <!-- Barra superior del gabinete -->
+            <div class="cabinet-marquee">
+              <div id="marquee-game-title" class="marquee-neon-text">★ ANNY CYBER SNAKE ★</div>
+              <div id="marquee-game-sub" class="marquee-subtext">COME MANZANAS & HAZ CRECER TU ESTELA</div>
+            </div>
+
+            <!-- Pantalla CRT y canvas -->
+            <div class="cabinet-screen-box snake-screen-box">
+              <div class="crt-scanlines"></div>
+              <div class="crt-glow-overlay"></div>
+              
+              <canvas id="arcade-canvas" width="400" height="400"></canvas>
+
+              <!-- Overlay del juego (Pantalla de inicio / Game Over) -->
+              <div id="arcade-overlay" class="arcade-game-overlay">
+                <div class="arcade-dialog-card">
+                  <div class="arcade-avatar-preview">
+                    <img id="snake-preview-img" src="caracter.jpeg" alt="Anny" class="arcade-avatar-thumb">
+                    <div class="avatar-ring-pulse"></div>
+                  </div>
+                  <h4 id="arcade-dialog-title" class="arcade-dialog-heading">¡CYBER SNAKE!</h4>
+                  <p id="arcade-dialog-text" class="arcade-dialog-body">
+                    Usa las <strong>Flechas / WASD</strong> o el <strong>D-Pad táctil</strong> para mover a Anny y atrapar todas las manzanas de neón (+10) y estrellas (+50).
+                  </p>
+                  
+                  <div class="arcade-scoreboard">
+                    <div class="score-pill">
+                      <span class="pill-label">PUNTOS</span>
+                      <span id="arcade-score-display" class="pill-value">0</span>
+                    </div>
+                    <div class="score-pill highlight">
+                      <span class="pill-label">RÉCORD</span>
+                      <span id="arcade-best-display" class="pill-value">0</span>
+                    </div>
+                  </div>
+
+                  <button id="arcade-play-btn" class="punk-btn primary arcade-play-button">
+                    <span>🕹️ EMPEZAR A JUGAR</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel de control físico del arcade adaptativo -->
+            <div class="cabinet-deck snake-deck">
+              <!-- Controles para Snake (D-Pad) -->
+              <div id="snake-controls-deck" class="arcade-dpad-container">
+                <div class="dpad-row">
+                  <button id="dpad-up" class="dpad-btn dpad-up" aria-label="Arriba">▲</button>
+                </div>
+                <div class="dpad-row dpad-middle">
+                  <button id="dpad-left" class="dpad-btn dpad-left" aria-label="Izquierda">◀</button>
+                  <div class="dpad-center">●</div>
+                  <button id="dpad-right" class="dpad-btn dpad-right" aria-label="Derecha">▶</button>
+                </div>
+                <div class="dpad-row">
+                  <button id="dpad-down" class="dpad-btn dpad-down" aria-label="Abajo">▼</button>
+                </div>
+              </div>
+
+              <!-- Controles para Heart Catcher (Botones grandes Izq / Der) -->
+              <div id="catcher-controls-deck" class="arcade-catcher-container hidden">
+                <button id="catcher-btn-left" class="catcher-touch-btn" aria-label="Mover Izquierda">
+                  <span>◀ IZQ</span>
+                </button>
+                <div class="catcher-touch-hint">O ARRASTRA EN PANTALLA</div>
+                <button id="catcher-btn-right" class="catcher-touch-btn" aria-label="Mover Derecha">
+                  <span>DER ▶</span>
+                </button>
+              </div>
+
+              <div class="snake-hints-box">
+                <span class="hint-title">CONTROLES</span>
+                <span id="arcade-hint-keys" class="hint-keys">FLECHAS / WASD</span>
+                <span class="hint-sub">100% TÁCTIL EN MÓVIL</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
